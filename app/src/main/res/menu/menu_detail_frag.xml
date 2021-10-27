@@ -5,6 +5,6 @@
     <item
         app:showAsAction="always"
         android:id="@+id/save"
-        android:title="메인 화면 메뉴" />
+        android:title="디테일 화면 메뉴" />
 
 </menu>
