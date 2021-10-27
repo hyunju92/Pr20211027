@@ -132,3 +132,7 @@ fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.gitignore.io/api/androidstudio
+app/src/main/res/navigation/nav_graph.xml
+app/src/main/res/layout/main_fragment.xml
+app/src/main/java/hyunju/com/pr20211027/MainFragment.kt
+.idea/navEditor.xml
