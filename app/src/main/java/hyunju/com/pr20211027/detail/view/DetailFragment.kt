@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.FragmentDetailBinding
 
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding

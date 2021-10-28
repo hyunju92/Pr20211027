@@ -1,4 +1,4 @@
-package hyunju.com.pr20211027.home.model
+package hyunju.com.pr20211027.main.model
 
 data class ProductItemData(
     val name: String,

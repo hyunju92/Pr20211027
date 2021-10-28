@@ -8,7 +8,7 @@ import com.google.android.material.navigation.NavigationView
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.current.view.CurrentAdapter
 import hyunju.com.pr20211027.databinding.LayouCustomNavBinding
-import hyunju.com.pr20211027.home.model.ProductItemData
+import hyunju.com.pr20211027.main.model.ProductItemData
 import hyunju.com.pr20211027.util.replaceAll
 
 class CustomNavigation @kotlin.jvm.JvmOverloads constructor(

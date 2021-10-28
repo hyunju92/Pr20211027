@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.ItemCustomNavRvBinding
-import hyunju.com.pr20211027.home.model.ProductItemData
+import hyunju.com.pr20211027.main.model.ProductItemData
 import hyunju.com.pr20211027.util.RecyclerAdapter
 
 class CurrentAdapter() : RecyclerView.Adapter<CurrentAdapter.CurrentViewHolder>(),

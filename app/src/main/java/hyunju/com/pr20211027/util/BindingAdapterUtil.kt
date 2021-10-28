@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import hyunju.com.pr20211027.home.view.CustomNavigation
 import hyunju.com.pr20211027.R
-import hyunju.com.pr20211027.home.model.ProductItemData
+import hyunju.com.pr20211027.main.model.ProductItemData
 
 interface RecyclerAdapter<T> {
     fun replaceAll(recyclerView: RecyclerView, listItem: List<T>?)
