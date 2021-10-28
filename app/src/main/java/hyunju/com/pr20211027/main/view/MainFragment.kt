@@ -4,15 +4,18 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.FragmentMainBinding
+import hyunju.com.pr20211027.main.vm.MainViewModel
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
+    private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
