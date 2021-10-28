@@ -6,7 +6,7 @@
     <data>
         <variable
             name="data"
-            type="hyunju.com.pr20211027.main.model.ProductItemData" />
+            type="hyunju.com.pr20211027.home.model.ProductItemData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

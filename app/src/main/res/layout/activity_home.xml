@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -13,21 +12,20 @@
     </data>
 
     <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/mainDrawer"
+        android:id="@+id/homeDrawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".MainActivity"
         tools:openDrawer="end">
 
         <include
-            android:id="@+id/mainContents"
+            android:id="@+id/homeContents"
             layout="@layout/layout_contents"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <hyunju.com.pr20211027.CustomNavigation
-            android:id="@+id/mainNav"
+        <hyunju.com.pr20211027.home.view.CustomNavigation
+            android:id="@+id/homeNav"
             replaceCustomNavListItem="@{null}"
             android:layout_width="180dp"
             android:layout_height="match_parent"

@@ -1,10 +1,11 @@
-package hyunju.com.pr20211027
+package hyunju.com.pr20211027.main.view
 
 import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.FragmentMainBinding
 
 
@@ -18,7 +19,8 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         setHasOptionsMenu(true)
-        binding = DataBindingUtil.inflate<FragmentMainBinding>(inflater, R.layout.fragment_main, container, false).apply {}
+        binding = DataBindingUtil.inflate<FragmentMainBinding>(inflater,
+            R.layout.fragment_main, container, false).apply {}
         return binding.root
     }
 
@@ -39,7 +41,8 @@ class MainFragment : Fragment() {
     }
 
     private fun moveToDetailFrag() {
-        val action = MainFragmentDirections.actionMainFragmentToDetailFragment()
+        val action =
+            MainFragmentDirections.actionMainFragmentToDetailFragment()
 //        requireActivity().findNavController(R.id.nav_host_fragment_container).navigate(action)
 
         Navigation.findNavController(requireActivity(), (R.id.nav_host_fragment_container)).navigate(action)

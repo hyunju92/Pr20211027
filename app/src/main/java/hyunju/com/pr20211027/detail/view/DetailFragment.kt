@@ -1,9 +1,10 @@
-package hyunju.com.pr20211027
+package hyunju.com.pr20211027.detail.view
 
 import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
@@ -16,7 +17,8 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         setHasOptionsMenu(true)
-        binding = DataBindingUtil.inflate<FragmentDetailBinding>(inflater, R.layout.fragment_detail, container, false).apply {}
+        binding = DataBindingUtil.inflate<FragmentDetailBinding>(inflater,
+            R.layout.fragment_detail, container, false).apply {}
         return binding.root
     }
 

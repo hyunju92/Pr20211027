@@ -1,4 +1,4 @@
-package hyunju.com.pr20211027
+package hyunju.com.pr20211027.home.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,23 +7,24 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import com.google.android.material.navigation.NavigationView
-import hyunju.com.pr20211027.databinding.ActivityMainBinding
+import hyunju.com.pr20211027.R
+import hyunju.com.pr20211027.databinding.ActivityHomeBinding
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class HomeActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityHomeBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
 
         initView()
     }
 
     private fun initView() {
-        setSupportActionBar(binding.mainContents.toolbar)
+        setSupportActionBar(binding.homeContents.toolbar)
 
-        val navView: NavigationView = binding.mainNav
+        val navView: NavigationView = binding.homeNav
         val navController = findNavController(R.id.nav_host_fragment_container)
 
 //        navView.setupWithNavController(navController)
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openDrawer() {
-        binding.mainDrawer.openDrawer(Gravity.RIGHT)
+        binding.homeDrawer.openDrawer(Gravity.RIGHT)
     }
 
 }

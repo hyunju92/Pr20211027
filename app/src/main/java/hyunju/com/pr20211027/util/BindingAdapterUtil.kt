@@ -4,9 +4,9 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import hyunju.com.pr20211027.CustomNavigation
+import hyunju.com.pr20211027.home.view.CustomNavigation
 import hyunju.com.pr20211027.R
-import hyunju.com.pr20211027.main.model.ProductItemData
+import hyunju.com.pr20211027.home.model.ProductItemData
 
 interface RecyclerAdapter<T> {
     fun replaceAll(recyclerView: RecyclerView, listItem: List<T>?)
