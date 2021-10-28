@@ -1,6 +1,7 @@
 package hyunju.com.pr20211027.main.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.FragmentMainBinding
+import hyunju.com.pr20211027.main.network.ResMainData
 import hyunju.com.pr20211027.main.vm.MainViewModel
 
 @AndroidEntryPoint
@@ -31,7 +33,9 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.mainFragBtn.setOnClickListener {
-            moveToDetailFrag()
+            mainViewModel.getMainData().subscribe {
+                Log.d("testGetMain", "init data $it")
+            }
         }
     }
 

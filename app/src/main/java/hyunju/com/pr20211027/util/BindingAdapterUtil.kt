@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import hyunju.com.pr20211027.home.view.CustomNavigation
 import hyunju.com.pr20211027.R
-import hyunju.com.pr20211027.main.model.ProductItemData
+import hyunju.com.pr20211027.main.network.ProductItem
 
 interface RecyclerAdapter<T> {
     fun replaceAll(recyclerView: RecyclerView, listItem: List<T>?)
@@ -31,6 +31,6 @@ fun setImgUri(imageView: ImageView, uri: String?) {
 }
 
 @BindingAdapter("replaceCustomNavListItem")
-fun replaceCustomNavListItem(view: CustomNavigation, listItem: List<ProductItemData>?) {
+fun replaceCustomNavListItem(view: CustomNavigation, listItem: List<ProductItem>?) {
     view.replaceListItem(listItem)
 }

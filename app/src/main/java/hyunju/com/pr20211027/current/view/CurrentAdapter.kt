@@ -7,18 +7,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.ItemCustomNavRvBinding
-import hyunju.com.pr20211027.main.model.ProductItemData
+import hyunju.com.pr20211027.main.network.ProductItem
 import hyunju.com.pr20211027.util.RecyclerAdapter
 
 class CurrentAdapter() : RecyclerView.Adapter<CurrentAdapter.CurrentViewHolder>(),
-    RecyclerAdapter<ProductItemData> {
-    private var productList: ArrayList<ProductItemData>? = null
+    RecyclerAdapter<ProductItem> {
+    private var productList: ArrayList<ProductItem>? = null
 
-    override fun replaceAll(recyclerView: RecyclerView, listItem: List<ProductItemData>?) {
+    override fun replaceAll(recyclerView: RecyclerView, listItem: List<ProductItem>?) {
         listItem?.let { newList ->
             if (productList == newList) {
                 productList?.clear()
-                productList = listItem as ArrayList<ProductItemData>
+                productList = listItem as ArrayList<ProductItem>
 
                 notifyDataSetChanged()
             } else {
@@ -52,14 +52,14 @@ class CurrentAdapter() : RecyclerView.Adapter<CurrentAdapter.CurrentViewHolder>(
 
     class CurrentViewHolder(private val binding: ItemCustomNavRvBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: ProductItemData) {
+        fun bind(data: ProductItem) {
             binding.data = data
         }
     }
 
     class CurrentDiffUtil(
-        private val oldList: List<ProductItemData>,
-        private val newList: List<ProductItemData>
+        private val oldList: List<ProductItem>,
+        private val newList: List<ProductItem>
     ) : DiffUtil.Callback() {
         override fun getOldListSize(): Int {
             return oldList.size

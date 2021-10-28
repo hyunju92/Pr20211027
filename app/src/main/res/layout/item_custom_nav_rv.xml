@@ -6,7 +6,7 @@
     <data>
         <variable
             name="data"
-            type="hyunju.com.pr20211027.main.model.ProductItemData" />
+            type="hyunju.com.pr20211027.main.network.ProductItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +17,7 @@
 
         <ImageView
             android:id="@+id/customNavRvItemImage"
-            setImgUri="@{data.img}"
+            setImgUri="@{data.image}"
             android:layout_width="100dp"
             android:layout_height="80dp"
             android:background="@color/cardview_dark_background"
