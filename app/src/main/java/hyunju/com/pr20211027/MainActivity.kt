@@ -2,9 +2,8 @@ package hyunju.com.pr20211027
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
+import android.view.Gravity
 import androidx.databinding.DataBindingUtil
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import com.google.android.material.navigation.NavigationView
@@ -31,5 +30,10 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.nav_host_fragment_container).navigateUp()
     }
+
+    private fun openDrawer() {
+        binding.mainDrawer.openDrawer(Gravity.RIGHT)
+    }
+
 
 }
