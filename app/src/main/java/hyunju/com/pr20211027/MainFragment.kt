@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import hyunju.com.pr20211027.databinding.FragmentMainBinding
-import androidx.navigation.findNavController
 
 
 class MainFragment : Fragment() {

@@ -3,8 +3,12 @@ package hyunju.com.pr20211027
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationView
+import hyunju.com.pr20211027.current.view.CurrentAdapter
 import hyunju.com.pr20211027.databinding.LayouCustomNavBinding
+import hyunju.com.pr20211027.main.model.ProductItemData
+import hyunju.com.pr20211027.util.replaceAll
 
 class CustomNavigation @kotlin.jvm.JvmOverloads constructor(
     context: Context,
@@ -28,23 +32,16 @@ class CustomNavigation @kotlin.jvm.JvmOverloads constructor(
     private fun getAttrs(context: Context, attrs: AttributeSet?) {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomNavigation)
 
-        // title text
-//        titleView = finnq_title_tv.apply {
-//            text = typedArray.getString(R.styleable.FinnqTitleView_title)
-//        }
-//
-//        // height
-//        threshold = typedArray.getDimension(R.styleable.FinnqTitleView_threshold, 0f).toInt()
-//        finnq_title_cl.layoutParams.let {
-//            it.height = threshold!!
-//        }
-//
-//        // scroll, recycler view
-//        scrollViewId = typedArray.getResourceId(R.styleable.FinnqTitleView_scrollViewId, NO_ID)
-//        recyclerViewId = typedArray.getResourceId(R.styleable.FinnqTitleView_recyclerViewId, NO_ID)
+        binding.customNavRv.run{
+            layoutManager = LinearLayoutManager(context)
+            adapter = CurrentAdapter()
+        }
 
         typedArray.recycle()
+    }
 
+    fun replaceListItem(listItem: List<ProductItemData>?) {
+        binding.customNavRv.replaceAll(listItem)
     }
 
 

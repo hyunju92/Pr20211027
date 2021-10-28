@@ -17,6 +17,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+        initView()
+    }
+
+    private fun initView() {
         setSupportActionBar(binding.mainContents.toolbar)
 
         val navView: NavigationView = binding.mainNav
@@ -34,6 +38,5 @@ class MainActivity : AppCompatActivity() {
     private fun openDrawer() {
         binding.mainDrawer.openDrawer(Gravity.RIGHT)
     }
-
 
 }
