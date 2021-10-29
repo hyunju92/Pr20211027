@@ -8,11 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.FragmentMainBinding
 import hyunju.com.pr20211027.home.vm.HomeViewModel
 import hyunju.com.pr20211027.main.network.ResMainData
+import hyunju.com.pr20211027.main.view.adapter.MainAdapter
 import hyunju.com.pr20211027.main.vm.MainViewModel
 
 @AndroidEntryPoint
@@ -22,11 +24,7 @@ class MainFragment : Fragment() {
     private val mainViewModel: MainViewModel by viewModels()
     private val sharedViewModel: HomeViewModel by activityViewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         setHasOptionsMenu(true)
         binding = DataBindingUtil.inflate<FragmentMainBinding>(inflater,
             R.layout.fragment_main, container, false).apply {}
@@ -35,11 +33,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.mainFragBtn.setOnClickListener {
-            mainViewModel.getMainData().subscribe {
-                Log.d("testGetMain", "init data $it")
-            }
-        }
+        initView()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -50,6 +44,19 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return super.onOptionsItemSelected(item)
     }
+
+
+    private fun initView() {
+        binding.mainFragBtn.setOnClickListener {
+            mainViewModel.getMainData()
+        }
+
+        binding.mainRv.run {
+            layoutManager = LinearLayoutManager(context)
+            adapter = MainAdapter(mainViewModel, sharedViewModel)
+        }
+    }
+
 
     private fun moveToDetailFrag() {
         val action =

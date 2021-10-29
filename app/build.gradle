@@ -53,8 +53,8 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.37"
 
     // rxjava
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.7'
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
 
     // glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
