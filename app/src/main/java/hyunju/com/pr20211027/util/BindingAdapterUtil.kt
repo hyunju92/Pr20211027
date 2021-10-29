@@ -1,6 +1,9 @@
 package hyunju.com.pr20211027.util
 
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -18,8 +21,8 @@ fun <T> RecyclerView.replaceAll(listItem: List<T>?) {
 }
 
 @BindingAdapter("setImgUri")
-fun setImgUri(imageView: ImageView, uri: String?) {
-    val loadImg = if (uri.isNullOrEmpty()) R.drawable.ic_baseline_error_outline_24 else uri
+fun setImgUrl(imageView: ImageView, url: String?) {
+    val loadImg = if (url.isNullOrEmpty()) R.drawable.ic_baseline_error_outline_24 else url
     val errorImg = R.drawable.ic_baseline_error_outline_24
     val placeholderImg = R.drawable.ic_baseline_collections_8
 
@@ -34,3 +37,15 @@ fun setImgUri(imageView: ImageView, uri: String?) {
 fun replaceCustomNavListItem(view: CustomNavigation, listItem: List<ProductItem>?) {
     view.replaceListItem(listItem)
 }
+
+@BindingAdapter("setCommonCardHeight")
+fun setCommonCardHeight(view: ConstraintLayout, cardCount: Int?) {
+    if(cardCount == null || cardCount < 2) return
+
+    val pxWidth = view.resources.displayMetrics.widthPixels
+    val layoutParams: ViewGroup.LayoutParams = view.layoutParams
+    layoutParams.height = ((pxWidth / cardCount) * 1.3).toInt()
+    view.layoutParams = layoutParams
+}
+
+

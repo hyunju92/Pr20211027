@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="hyunju.com.pr20211027.main.network.ProductItem" />
+
+        <import
+            alias="ExtensionUtil"
+            type="hyunju.com.pr20211027.util.BindingAdapterUtilKt" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/subviewMainProdDoubleCl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp">
+
+        <include
+            android:id="@+id/subviewMainProdDoubleItem1"
+            layout="@layout/item_common_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:data="@{data}"
+            app:cardCount="@{2}"
+            app:layout_constraintEnd_toStartOf="@+id/subviewMainProdDoubleSpace"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Space
+            android:id="@+id/subviewMainProdDoubleSpace"
+            android:layout_width="4dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/subviewMainProdDoubleItem2"
+            app:layout_constraintStart_toEndOf="@+id/subviewMainProdDoubleItem1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/subviewMainProdDoubleItem2"
+            layout="@layout/item_common_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:data="@{data}"
+            app:cardCount="@{2}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/subviewMainProdDoubleSpace" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

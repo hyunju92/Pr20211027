@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationView
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.current.view.CurrentAdapter
-import hyunju.com.pr20211027.databinding.LayouCustomNavBinding
+import hyunju.com.pr20211027.databinding.LayoutCustomNavBinding
 import hyunju.com.pr20211027.main.network.ProductItem
 import hyunju.com.pr20211027.util.replaceAll
 
@@ -16,7 +16,7 @@ class CustomNavigation @kotlin.jvm.JvmOverloads constructor(
     attrs: AttributeSet? = null,
 ) : NavigationView(context, attrs){
 
-    private lateinit var binding: LayouCustomNavBinding
+    private lateinit var binding: LayoutCustomNavBinding
 
     init {
         initView()
@@ -25,7 +25,7 @@ class CustomNavigation @kotlin.jvm.JvmOverloads constructor(
 
 
     private fun initView() {
-        binding = LayouCustomNavBinding.inflate(LayoutInflater.from(context))
+        binding = LayoutCustomNavBinding.inflate(LayoutInflater.from(context))
         addView(binding.root)
     }
 
