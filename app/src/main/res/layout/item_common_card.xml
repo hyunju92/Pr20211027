@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -20,7 +21,12 @@
         android:id="@+id/subviewCommonCardCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp">
+        android:outlineAmbientShadowColor="@color/c_000000"
+        android:outlineSpotShadowColor="@color/c_000000"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="false"
+        tools:targetApi="p">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/subviewCommonCardCl"
@@ -33,7 +39,6 @@
                 setImgUri="@{data.image}"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:background="@color/purple_500"
                 app:layout_constraintHeight_percent="0.75"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,11 +47,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:text="@{data.name}"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +67,7 @@
                 android:layout_marginTop="4dp"
                 android:singleLine="true"
                 android:text="@{data.price}"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
