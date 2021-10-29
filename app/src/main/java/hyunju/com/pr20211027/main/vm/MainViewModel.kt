@@ -21,8 +21,6 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
 
 
     fun getMainData(){
-//        return mainRepository.getMainData()
-
         disposable.add(mainRepository.getMainData()
             .subscribeOn(Schedulers.computation())
             .map { it.toMainUiItemList() }
@@ -32,5 +30,10 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
             }
 
         )
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposable.clear()
     }
 }
