@@ -5,6 +5,17 @@
 
     <data>
 
+        <variable
+            name="mainViewModel"
+            type="hyunju.com.pr20211027.main.vm.MainViewModel" />
+
+        <variable
+            name="sharedViewModel"
+            type="hyunju.com.pr20211027.home.vm.HomeViewModel" />
+
+        <variable
+            name="data"
+            type="hyunju.com.pr20211027.main.view.data.MainCurrentItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

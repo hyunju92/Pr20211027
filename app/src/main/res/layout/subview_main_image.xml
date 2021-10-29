@@ -5,8 +5,16 @@
     <data>
 
         <variable
+            name="mainViewModel"
+            type="hyunju.com.pr20211027.main.vm.MainViewModel" />
+
+        <variable
+            name="sharedViewModel"
+            type="hyunju.com.pr20211027.home.vm.HomeViewModel" />
+
+        <variable
             name="data"
-            type="hyunju.com.pr20211027.main.network.ProductItem" />
+            type="hyunju.com.pr20211027.main.view.data.MainImageItem" />
 
         <import
             alias="ExtensionUtil"
@@ -21,9 +29,9 @@
 
         <ImageView
             android:id="@+id/subviewMainImageIv"
-            setImgUri="@{data.image}"
+            setImgUri="@{data.prod.image}"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="@dimen/subview_main_image_height"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

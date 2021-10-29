@@ -5,8 +5,16 @@
     <data>
 
         <variable
+            name="mainViewModel"
+            type="hyunju.com.pr20211027.main.vm.MainViewModel" />
+
+        <variable
+            name="sharedViewModel"
+            type="hyunju.com.pr20211027.home.vm.HomeViewModel" />
+
+        <variable
             name="data"
-            type="hyunju.com.pr20211027.main.network.ProductItem" />
+            type="hyunju.com.pr20211027.main.view.data.MainProdDoubleItem" />
 
         <import
             alias="ExtensionUtil"
@@ -26,7 +34,7 @@
             layout="@layout/item_common_card"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:data="@{data}"
+            app:data="@{data.prod1}"
             app:cardCount="@{2}"
             app:layout_constraintEnd_toStartOf="@+id/subviewMainProdDoubleSpace"
             app:layout_constraintStart_toStartOf="parent" />
@@ -44,7 +52,7 @@
             layout="@layout/item_common_card"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:data="@{data}"
+            app:data="@{data.prod2}"
             app:cardCount="@{2}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/subviewMainProdDoubleSpace" />

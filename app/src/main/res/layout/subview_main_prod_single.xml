@@ -5,8 +5,17 @@
     <data>
 
         <variable
+            name="mainViewModel"
+            type="hyunju.com.pr20211027.main.vm.MainViewModel" />
+
+        <variable
+            name="sharedViewModel"
+            type="hyunju.com.pr20211027.home.vm.HomeViewModel" />
+
+
+        <variable
             name="data"
-            type="hyunju.com.pr20211027.main.network.ProductItem" />
+            type="hyunju.com.pr20211027.main.view.data.MainProdSingleItem" />
 
         <import
             alias="ExtensionUtil"
@@ -26,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCount="@{1}"
-            app:data="@{data}"
+            app:data="@{data.prod}"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
