@@ -1,7 +1,6 @@
 package hyunju.com.pr20211027.main.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -13,9 +12,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.FragmentMainBinding
 import hyunju.com.pr20211027.home.vm.HomeViewModel
-import hyunju.com.pr20211027.main.network.ResMainData
+import hyunju.com.pr20211027.main.network.ProductItem
 import hyunju.com.pr20211027.main.view.adapter.MainAdapter
+import hyunju.com.pr20211027.main.vm.MainUiEvent
 import hyunju.com.pr20211027.main.vm.MainViewModel
+import io.reactivex.rxjava3.disposables.Disposable
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
@@ -25,7 +26,13 @@ class MainFragment : Fragment() {
     private val mainViewModel: MainViewModel by viewModels()
     private val sharedViewModel: HomeViewModel by activityViewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    private var eventDisposable: Disposable? = null
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         setHasOptionsMenu(true)
         binding = DataBindingUtil.inflate<FragmentMainBinding>(inflater, R.layout.fragment_main, container, false).apply {
             mainVm = mainViewModel
@@ -37,17 +44,8 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        observeData()
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_main_frag, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
-    }
-
 
     private fun initView() {
         binding.mainFragBtn.setOnClickListener {
@@ -60,13 +58,38 @@ class MainFragment : Fragment() {
         }
     }
 
+    private fun observeData() {
+        eventDisposable = mainViewModel.uiEvent.subscribe {
+            handleUiEvent(it)
+        }
+    }
 
-    private fun moveToDetailFrag() {
+    private fun handleUiEvent(uiEvent: MainUiEvent) = when (uiEvent) {
+        is MainUiEvent.MoveDetail -> moveToDetailFrag(uiEvent.data)
+    }
+
+    private fun moveToDetailFrag(data: ProductItem) {
         val action =
             MainFragmentDirections.actionMainFragmentToDetailFragment()
 //        requireActivity().findNavController(R.id.nav_host_fragment_container).navigate(action)
 
-        Navigation.findNavController(requireActivity(), (R.id.nav_host_fragment_container)).navigate(action)
+        Navigation.findNavController(requireActivity(), (R.id.nav_host_fragment_container))
+            .navigate(action)
     }
 
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_main_frag, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        eventDisposable?.dispose()
+    }
 }

@@ -42,7 +42,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/subviewMainProdDoubleItem2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:mainViewModel="@{mainViewModel}" />
 
         <include
             android:id="@+id/subviewMainProdDoubleItem2"
@@ -58,7 +59,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/subviewMainProdDoubleItem1"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:mainViewModel="@{mainViewModel}" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

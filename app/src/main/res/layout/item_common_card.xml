@@ -14,6 +14,10 @@
             name="data"
             type="hyunju.com.pr20211027.main.network.ProductItem" />
 
+        <variable
+            name="mainViewModel"
+            type="hyunju.com.pr20211027.main.vm.MainViewModel" />
+
     </data>
 
 
@@ -32,7 +36,8 @@
             android:id="@+id/subviewCommonCardCl"
             setCommonCardHeight="@{cardCount}"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/subview_common_card_height">
+            android:layout_height="@dimen/subview_common_card_height"
+            android:onClick="@{() -> mainViewModel.clickProductView(data)}">
 
             <ImageView
                 android:id="@+id/subviewCommonCardIv"

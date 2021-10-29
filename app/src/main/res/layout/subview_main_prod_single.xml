@@ -12,7 +12,6 @@
             name="sharedViewModel"
             type="hyunju.com.pr20211027.home.vm.HomeViewModel" />
 
-
         <variable
             name="data"
             type="hyunju.com.pr20211027.main.view.data.MainProdSingleItem" />
@@ -39,6 +38,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:mainViewModel="@{mainViewModel}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
