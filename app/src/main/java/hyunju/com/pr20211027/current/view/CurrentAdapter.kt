@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hyunju.com.pr20211027.R
-import hyunju.com.pr20211027.databinding.ItemCustomNavRvBinding
+import hyunju.com.pr20211027.databinding.ItemCurrentBinding
 import hyunju.com.pr20211027.main.network.ProductItem
 import hyunju.com.pr20211027.util.RecyclerAdapter
 
@@ -32,9 +32,9 @@ class CurrentAdapter() : RecyclerView.Adapter<CurrentAdapter.CurrentViewHolder>(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrentViewHolder {
-        return DataBindingUtil.inflate<ItemCustomNavRvBinding>(
+        return DataBindingUtil.inflate<ItemCurrentBinding>(
             LayoutInflater.from(parent.context),
-            R.layout.item_custom_nav_rv,
+            R.layout.item_current,
             parent,
             false
         ).let {
@@ -50,7 +50,7 @@ class CurrentAdapter() : RecyclerView.Adapter<CurrentAdapter.CurrentViewHolder>(
         return productList?.size ?: 0
     }
 
-    class CurrentViewHolder(private val binding: ItemCustomNavRvBinding) :
+    class CurrentViewHolder(private val binding: ItemCurrentBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: ProductItem) {
             binding.data = data
