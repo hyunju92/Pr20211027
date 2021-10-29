@@ -21,13 +21,16 @@ import hyunju.com.pr20211027.main.vm.MainViewModel
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
+
     private val mainViewModel: MainViewModel by viewModels()
     private val sharedViewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         setHasOptionsMenu(true)
-        binding = DataBindingUtil.inflate<FragmentMainBinding>(inflater,
-            R.layout.fragment_main, container, false).apply {}
+        binding = DataBindingUtil.inflate<FragmentMainBinding>(inflater, R.layout.fragment_main, container, false).apply {
+            mainVm = mainViewModel
+            sharedVm = sharedViewModel
+        }
         return binding.root
     }
 

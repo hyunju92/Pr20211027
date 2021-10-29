@@ -2,12 +2,25 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="mainVm"
+            type="hyunju.com.pr20211027.main.vm.MainViewModel" />
+
+        <variable
+            name="sharedVm"
+            type="hyunju.com.pr20211027.home.vm.HomeViewModel" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mainRv"
+            replaceAll="@{mainVm.mainItemList}"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

@@ -20,7 +20,7 @@ class MainAdapter(
 
     override fun replaceAll(recyclerView: RecyclerView, listItem: List<MainUiItem>?) {
         listItem?.let { newList ->
-            if (mainList == newList) {
+            if (mainList == null) {
                 mainList?.clear()
                 mainList = listItem as ArrayList<MainUiItem>
 
