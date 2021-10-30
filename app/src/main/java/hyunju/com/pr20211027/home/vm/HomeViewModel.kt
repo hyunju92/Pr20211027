@@ -1,5 +1,6 @@
 package hyunju.com.pr20211027.home.vm
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
@@ -16,7 +17,9 @@ class HomeViewModel @Inject constructor(): ViewModel(){
                 it.remove(data)
             }
             it.addFirst(data)
+            Log.d("testCurrentList", "addCurrentList size ${it.size} ")
         }
+
     }
 
     fun removeCurrentList(data: ProductItem) {

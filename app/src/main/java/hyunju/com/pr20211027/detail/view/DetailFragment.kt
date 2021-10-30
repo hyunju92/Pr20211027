@@ -1,6 +1,7 @@
 package hyunju.com.pr20211027.detail.view
 
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.view.*
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
@@ -80,6 +81,7 @@ class DetailFragment : Fragment() {
 
     private fun handleUiEvent(uiEvent: DetailUiEvent) = when(uiEvent) {
         DetailUiEvent.BackToMain -> backToMainFragment()
+        is DetailUiEvent.AddCurrentList -> addCurrentList(uiEvent.data)
     }
 
     private fun backToMainFragment() {

@@ -10,13 +10,14 @@ import javax.inject.Inject
 class DetailViewModel @Inject constructor() : ViewModel() {
 
     val uiEvent = PublishSubject.create<DetailUiEvent>()
-    private var data : ProductItem? = null
+    private lateinit var data : ProductItem
 
     fun setData(data: ProductItem) { this.data = data }
 
     fun getData() = data
 
     fun onBackPressed() {
+        uiEvent.onNext(DetailUiEvent.AddCurrentList(data))
         uiEvent.onNext(DetailUiEvent.BackToMain)
     }
 
@@ -24,4 +25,5 @@ class DetailViewModel @Inject constructor() : ViewModel() {
 
 sealed class DetailUiEvent {
     object BackToMain : DetailUiEvent()
+    data class AddCurrentList(val data: ProductItem) : DetailUiEvent()
 }
