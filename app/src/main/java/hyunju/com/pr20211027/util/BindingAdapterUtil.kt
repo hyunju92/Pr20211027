@@ -1,5 +1,6 @@
 package hyunju.com.pr20211027.util
 
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import hyunju.com.pr20211027.home.view.CustomNavigation
 import hyunju.com.pr20211027.R
+import hyunju.com.pr20211027.home.vm.HomeViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
 
 interface RecyclerAdapter<T> {
@@ -32,11 +34,6 @@ fun setImgUrl(imageView: ImageView, url: String?) {
             .into(imageView)
 }
 
-@BindingAdapter("replaceCustomNavListItem")
-fun replaceCustomNavListItem(view: CustomNavigation, listItem: List<ProductItem>?) {
-    view.replaceListItem(listItem)
-}
-
 @BindingAdapter("setCommonCardHeight")
 fun setCommonCardHeight(view: ConstraintLayout, cardCount: Int?) {
     if(cardCount == null || cardCount < 2) return
@@ -47,4 +44,13 @@ fun setCommonCardHeight(view: ConstraintLayout, cardCount: Int?) {
     view.layoutParams = layoutParams
 }
 
+@BindingAdapter("replaceCustomNavListItem")
+fun replaceCustomNavListItem(view: CustomNavigation, listItem: List<ProductItem>?) {
+    view.replaceListItem(listItem)
+}
+
+@BindingAdapter("setCustomNavViewModel")
+fun setCustomNavViewModel(view: CustomNavigation, homeViewModel: HomeViewModel) {
+    view.setViewModel(homeViewModel)
+}
 

@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.ItemCurrentBinding
+import hyunju.com.pr20211027.home.vm.HomeViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
 import hyunju.com.pr20211027.util.RecyclerAdapter
 
-class CurrentAdapter : RecyclerView.Adapter<CurrentAdapter.CurrentViewHolder>(),
-    RecyclerAdapter<ProductItem> {
+class CurrentAdapter(private val homeViewModel: HomeViewModel) :
+    RecyclerView.Adapter<CurrentAdapter.CurrentViewHolder>(), RecyclerAdapter<ProductItem> {
+
     private var productList: ArrayList<ProductItem>? = null
 
     override fun replaceAll(recyclerView: RecyclerView, listItem: List<ProductItem>?) {
@@ -32,12 +34,8 @@ class CurrentAdapter : RecyclerView.Adapter<CurrentAdapter.CurrentViewHolder>(),
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrentViewHolder {
-        return DataBindingUtil.inflate<ItemCurrentBinding>(
-            LayoutInflater.from(parent.context),
-            R.layout.item_current,
-            parent,
-            false
-        ).let {
+        return DataBindingUtil.inflate<ItemCurrentBinding>(LayoutInflater.from(parent.context), R.layout.item_current, parent, false).let {
+            it.homeVm = homeViewModel
             CurrentViewHolder(it)
         }
     }
@@ -50,17 +48,13 @@ class CurrentAdapter : RecyclerView.Adapter<CurrentAdapter.CurrentViewHolder>(),
         return productList?.size ?: 0
     }
 
-    class CurrentViewHolder(private val binding: ItemCurrentBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class CurrentViewHolder(private val binding: ItemCurrentBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: ProductItem) {
             binding.data = data
         }
     }
 
-    class CurrentDiffUtil(
-        private val oldList: List<ProductItem>,
-        private val newList: List<ProductItem>
-    ) : DiffUtil.Callback() {
+    class CurrentDiffUtil(private val oldList: List<ProductItem>, private val newList: List<ProductItem>) : DiffUtil.Callback() {
         override fun getOldListSize(): Int {
             return oldList.size
         }

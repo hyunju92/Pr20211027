@@ -8,6 +8,7 @@ import com.google.android.material.navigation.NavigationView
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.current.view.CurrentAdapter
 import hyunju.com.pr20211027.databinding.LayoutCustomNavBinding
+import hyunju.com.pr20211027.home.vm.HomeViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
 import hyunju.com.pr20211027.util.replaceAll
 
@@ -17,27 +18,20 @@ class CustomNavigation @kotlin.jvm.JvmOverloads constructor(
 ) : NavigationView(context, attrs){
 
     private lateinit var binding: LayoutCustomNavBinding
+    private lateinit var homeViewModel: HomeViewModel
 
     init {
         initView()
         getAttrs(context, attrs)
     }
 
-
     private fun initView() {
         binding = LayoutCustomNavBinding.inflate(LayoutInflater.from(context))
         addView(binding.root)
     }
 
-
     private fun getAttrs(context: Context, attrs: AttributeSet?) {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomNavigation)
-
-        binding.customNavRv.run{
-            layoutManager = LinearLayoutManager(context)
-            adapter = CurrentAdapter()
-        }
-
         typedArray.recycle()
     }
 
@@ -45,6 +39,19 @@ class CustomNavigation @kotlin.jvm.JvmOverloads constructor(
         binding.customNavRv.replaceAll(listItem?.toMutableList())
     }
 
+    fun setViewModel(viewModel: HomeViewModel) {
+        homeViewModel = viewModel
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        if(parent == null) { return }
+
+        binding.customNavRv.run{
+            layoutManager = LinearLayoutManager(context)
+            adapter = CurrentAdapter(homeViewModel)
+        }
+    }
 
 }
 

@@ -12,7 +12,6 @@ class HomeViewModel @Inject constructor(): ViewModel(){
     val currentItemList = ObservableField<List<ProductItem>>()
 
     fun addCurrentList(data: ProductItem) {
-
         val newList = currentItemList.get()?.apply {
             this as LinkedList
             if (contains(data)) {
@@ -22,17 +21,21 @@ class HomeViewModel @Inject constructor(): ViewModel(){
 
         } ?: LinkedList<ProductItem>().apply { add(data) }
 
-        currentItemList.set(newList)
-        currentItemList.notifyChange()
+        refreshCurrentList(newList)
     }
 
     fun removeCurrentList(data: ProductItem) {
         val newList = currentItemList.get()?.apply{
             this as LinkedList
             remove(data)
-        }
-        currentItemList.set(newList)
+        }?:return
 
+        refreshCurrentList(newList)
+    }
+
+    private fun refreshCurrentList(newList: List<ProductItem>) {
+        currentItemList.set(newList)
+        currentItemList.notifyChange()
     }
 
 }
