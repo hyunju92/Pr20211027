@@ -92,5 +92,10 @@ class DetailFragment : Fragment() {
         sharedViewModel.addCurrentList(data)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        eventDisposable?.dispose()
+    }
+
 
 }

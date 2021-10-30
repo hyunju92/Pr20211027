@@ -11,6 +11,7 @@ import hyunju.com.pr20211027.home.view.CustomNavigation
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.home.vm.HomeViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
+import hyunju.com.pr20211027.main.vm.MainViewModel
 
 interface RecyclerAdapter<T> {
     fun replaceAll(recyclerView: RecyclerView, listItem: List<T>?)

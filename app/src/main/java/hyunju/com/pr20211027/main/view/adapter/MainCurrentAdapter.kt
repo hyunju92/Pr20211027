@@ -9,9 +9,10 @@ import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.ItemMainCurrentBinding
 import hyunju.com.pr20211027.home.vm.HomeViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
+import hyunju.com.pr20211027.main.vm.MainViewModel
 import hyunju.com.pr20211027.util.RecyclerAdapter
 
-class MainCurrentAdapter(private val homeViewModel: HomeViewModel) : RecyclerView.Adapter<MainCurrentAdapter.MainCurrentViewHolder>(),
+class MainCurrentAdapter(private val mainViewModel: MainViewModel, private val homeViewModel: HomeViewModel) : RecyclerView.Adapter<MainCurrentAdapter.MainCurrentViewHolder>(),
     RecyclerAdapter<ProductItem> {
 
     private var productList: ArrayList<ProductItem>? = null
@@ -35,6 +36,7 @@ class MainCurrentAdapter(private val homeViewModel: HomeViewModel) : RecyclerVie
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainCurrentViewHolder {
         return DataBindingUtil.inflate<ItemMainCurrentBinding>(LayoutInflater.from(parent.context), R.layout.item_main_current, parent, false).let {
+            it.mainVm = mainViewModel
             it.homeVm = homeViewModel
             MainCurrentViewHolder(it)
         }

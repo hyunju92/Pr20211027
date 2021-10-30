@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="mainVm"
+            type="hyunju.com.pr20211027.main.vm.MainViewModel" />
+
+        <variable
             name="homeVm"
             type="hyunju.com.pr20211027.home.vm.HomeViewModel" />
 
@@ -30,6 +34,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:mainViewModel="@{mainVm}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

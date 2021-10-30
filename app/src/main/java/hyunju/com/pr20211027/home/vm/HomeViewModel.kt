@@ -1,17 +1,18 @@
 package hyunju.com.pr20211027.home.vm
 
-import android.system.Os.remove
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
-import java.util.*
+import io.reactivex.rxjava3.subjects.PublishSubject
 import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(): ViewModel(){
+
     val currentItemList = ObservableField<List<ProductItem>>()
+    val uiEvent = PublishSubject.create<HomeUiEvent>()
 
     fun addCurrentList(data: ProductItem) {
         val newList = currentItemList.get()?.toMutableList()?.apply {
@@ -31,9 +32,19 @@ class HomeViewModel @Inject constructor(): ViewModel(){
         refreshCurrentList(newList)
     }
 
+    fun clickProductView(data: ProductItem){
+        uiEvent.onNext(HomeUiEvent.MoveDetail(data))
+        uiEvent.onNext(HomeUiEvent.CloseDrawer)
+    }
+
     private fun refreshCurrentList(newList: List<ProductItem>) {
         currentItemList.set(newList)
         currentItemList.notifyChange()
     }
+}
 
+
+sealed class HomeUiEvent {
+    data class MoveDetail(val data: ProductItem) : HomeUiEvent()
+    object CloseDrawer : HomeUiEvent()
 }

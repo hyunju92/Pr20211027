@@ -7,17 +7,20 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
-import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.ActivityHomeBinding
+import hyunju.com.pr20211027.home.vm.HomeUiEvent
 import hyunju.com.pr20211027.home.vm.HomeViewModel
+import hyunju.com.pr20211027.main.network.ProductItem
+import io.reactivex.rxjava3.disposables.Disposable
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private val homeViewModel: HomeViewModel by viewModels()
+    private var eventDisposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,28 +29,52 @@ class HomeActivity : AppCompatActivity() {
         }
 
         initView()
-    }
-
-    private fun initView() {
-        setSupportActionBar(binding.homeContents.toolbar)
-
-        val navView: NavigationView = binding.homeNav
-        val navController = findNavController(R.id.nav_host_fragment_container)
-
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-
-
-//        navView.setupWithNavController(navController)
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
-
+        observeData()
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.nav_host_fragment_container).navigateUp()
     }
 
+    private fun initView() {
+        setSupportActionBar(binding.homeContents.toolbar)
+
+        val navController = getNavController()
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
+    }
+
+    private fun observeData() {
+        eventDisposable = homeViewModel.uiEvent.subscribe {
+            handleUiEvent(it)
+        }
+    }
+
+    private fun handleUiEvent(uiEvent: HomeUiEvent) = when(uiEvent) {
+        is HomeUiEvent.MoveDetail -> moveToDetailFrag(uiEvent.data)
+        HomeUiEvent.CloseDrawer -> closeDrawer()
+    }
+
+    private fun moveToDetailFrag(data: ProductItem) {
+        getNavController().run {
+            navigateUp()
+            val args = Bundle().apply { putParcelable("data", data) }
+            navigate(R.id.detailFragment, args)
+        }
+    }
+
     private fun openDrawer() {
         binding.homeDrawer.openDrawer(Gravity.RIGHT)
     }
 
+    private fun closeDrawer() {
+        binding.homeDrawer.closeDrawer(Gravity.RIGHT)
+    }
+
+    private fun getNavController() = findNavController(R.id.nav_host_fragment_container)
+
+    override fun onDestroy() {
+        super.onDestroy()
+        eventDisposable?.dispose()
+    }
 }

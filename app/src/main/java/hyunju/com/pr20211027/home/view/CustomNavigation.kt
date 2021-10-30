@@ -10,6 +10,7 @@ import hyunju.com.pr20211027.current.view.CurrentAdapter
 import hyunju.com.pr20211027.databinding.LayoutCustomNavBinding
 import hyunju.com.pr20211027.home.vm.HomeViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
+import hyunju.com.pr20211027.main.vm.MainViewModel
 import hyunju.com.pr20211027.util.replaceAll
 
 class CustomNavigation @kotlin.jvm.JvmOverloads constructor(
@@ -18,6 +19,7 @@ class CustomNavigation @kotlin.jvm.JvmOverloads constructor(
 ) : NavigationView(context, attrs){
 
     private lateinit var binding: LayoutCustomNavBinding
+
     private lateinit var homeViewModel: HomeViewModel
 
     init {
@@ -39,8 +41,8 @@ class CustomNavigation @kotlin.jvm.JvmOverloads constructor(
         binding.customNavRv.replaceAll(listItem)
     }
 
-    fun setViewModel(viewModel: HomeViewModel) {
-        homeViewModel = viewModel
+    fun setViewModel(homeVm: HomeViewModel) {
+        homeViewModel = homeVm
     }
 
     override fun onAttachedToWindow() {
