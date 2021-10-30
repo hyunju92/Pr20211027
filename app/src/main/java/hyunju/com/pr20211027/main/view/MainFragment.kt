@@ -39,15 +39,13 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initView()
         observeData()
+        initAction()
     }
 
     private fun initView() {
-        binding.mainFragBtn.setOnClickListener {
-            mainViewModel.getMainData()
-        }
-
         binding.mainRv.run {
             layoutManager = LinearLayoutManager(context)
             adapter = MainAdapter(mainViewModel, sharedViewModel)
@@ -58,6 +56,10 @@ class MainFragment : Fragment() {
         eventDisposable = mainViewModel.uiEvent.subscribe {
             handleUiEvent(it)
         }
+    }
+
+    private fun initAction() {
+        mainViewModel.getMainData()
     }
 
     private fun handleUiEvent(uiEvent: MainUiEvent) = when (uiEvent) {
