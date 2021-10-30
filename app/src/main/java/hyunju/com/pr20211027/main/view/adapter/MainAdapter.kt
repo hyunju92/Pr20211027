@@ -4,7 +4,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hyunju.com.pr20211027.home.vm.HomeViewModel
-import hyunju.com.pr20211027.main.view.data.MainCurrentItem
 import hyunju.com.pr20211027.main.view.data.MainUiItem
 import hyunju.com.pr20211027.main.view.data.MainUiItemType
 import hyunju.com.pr20211027.main.vm.MainViewModel
@@ -45,14 +44,6 @@ class MainAdapter(
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         mainList?.let { holder.bind(it[position]) }
-    }
-
-    override fun onBindViewHolder(holder: MainViewHolder, position: Int, payloads: MutableList<Any>) {
-        if (payloads.isNotEmpty() && holder is CurrentViewHolder) {
-            (payloads[0] as? MainCurrentItem)?.let { holder.onCurrentDataChanged(it) }
-        } else {
-            super.onBindViewHolder(holder, position, payloads)
-        }
     }
 
     override fun getItemCount(): Int = mainList?.size ?: 0

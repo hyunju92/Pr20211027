@@ -34,13 +34,4 @@ class MainDiffUtil(
                 (oldList[oldItemPosition] as MainCurrentItem) == (newList[newItemPosition] as MainCurrentItem)
         }
     }
-
-    override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
-        val newItem = newList[newItemPosition]
-        return if (newItem is MainCurrentItem) {
-            newItem
-        } else {
-            return super.getChangePayload(oldItemPosition, newItemPosition)
-        }
-    }
 }
