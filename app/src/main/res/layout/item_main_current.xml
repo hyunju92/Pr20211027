@@ -22,10 +22,10 @@
         <include
             android:id="@+id/subviewMainCurrentItem"
             layout="@layout/item_common_card"
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            app:cardCount="@{5}"
+            app:cardCount="@{3}"
             app:data="@{data}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
