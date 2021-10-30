@@ -34,7 +34,7 @@ fun setImgUrl(imageView: ImageView, url: String?) {
 
 @BindingAdapter("replaceCustomNavListItem")
 fun replaceCustomNavListItem(view: CustomNavigation, listItem: List<ProductItem>?) {
-    view.replaceListItem(listItem?.toMutableList())
+    view.replaceListItem(listItem)
 }
 
 @BindingAdapter("setCommonCardHeight")

@@ -42,7 +42,7 @@ class CustomNavigation @kotlin.jvm.JvmOverloads constructor(
     }
 
     fun replaceListItem(listItem: List<ProductItem>?) {
-        binding.customNavRv.replaceAll(listItem)
+        binding.customNavRv.replaceAll(listItem?.toMutableList())
     }
 
 
