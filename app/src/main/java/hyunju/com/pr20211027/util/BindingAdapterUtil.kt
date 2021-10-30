@@ -1,5 +1,6 @@
 package hyunju.com.pr20211027.util
 
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -26,16 +27,16 @@ fun setImgUrl(imageView: ImageView, url: String?) {
     val errorImg = R.drawable.ic_baseline_error_outline_24
     val placeholderImg = R.drawable.ic_baseline_collections_8
 
-        Glide.with(imageView.rootView.context)
-            .load(loadImg)
-            .placeholder(placeholderImg)
-            .error(errorImg)
-            .into(imageView)
+    Glide.with(imageView.rootView.context)
+        .load(loadImg)
+        .placeholder(placeholderImg)
+        .error(errorImg)
+        .into(imageView)
 }
 
 @BindingAdapter("setCommonCardHeight")
 fun setCommonCardHeight(view: ConstraintLayout, cardCount: Int?) {
-    if(cardCount == null || cardCount < 2) return
+    if (cardCount == null || cardCount < 2) return
 
     val pxWidth = view.resources.displayMetrics.widthPixels
     val layoutParams: ViewGroup.LayoutParams = view.layoutParams
@@ -51,5 +52,10 @@ fun replaceCustomNavListItem(view: CustomNavigation, listItem: List<ProductItem>
 @BindingAdapter("setCustomNavViewModel")
 fun setCustomNavViewModel(view: CustomNavigation, homeViewModel: HomeViewModel) {
     view.setViewModel(homeViewModel)
+}
+
+@BindingAdapter("setViewVisibility")
+fun setViewVisibility(view: View, isVisible: Boolean) {
+    view.visibility = if (isVisible) View.VISIBLE else View.GONE
 }
 
