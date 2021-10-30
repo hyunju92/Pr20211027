@@ -12,14 +12,25 @@
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_detailFragment"
-            app:destination="@+id/detailFragment" />
+            app:destination="@+id/detailFragment">
+
+            <argument
+                android:name="data"
+                app:argType="hyunju.com.pr20211027.main.network.ProductItem"
+                app:nullable="false" />
+        </action>
     </fragment>
 
     <fragment
         android:id="@+id/detailFragment"
         android:name="hyunju.com.pr20211027.detail.view.DetailFragment"
         android:label="detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail">
 
+        <argument
+            android:name="data"
+            app:argType="hyunju.com.pr20211027.main.network.ProductItem"
+            app:nullable="false" />
+    </fragment>
 
 </navigation>

@@ -34,19 +34,29 @@ class DetailFragment : Fragment() {
         return true
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initData()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         setHasOptionsMenu(true)
-        binding = DataBindingUtil.inflate<FragmentDetailBinding>(inflater, R.layout.fragment_detail, container, false).apply {}
+        binding = DataBindingUtil.inflate<FragmentDetailBinding>(inflater, R.layout.fragment_detail, container, false).apply {
+            detailVm = detailViewModel
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setBackPressed()
         initView()
     }
 
-    private fun initView() {
-        setBackPressed()
+    private fun initData() {
+        DetailFragmentArgs.fromBundle(requireArguments()).data.let {
+            detailViewModel.setData(it)
+        }
     }
 
     private fun setBackPressed() {
@@ -54,6 +64,10 @@ class DetailFragment : Fragment() {
             override fun handleOnBackPressed() { backToMainFragment() }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
+
+    private fun initView() {
+
     }
 
     private fun backToMainFragment() {

@@ -28,11 +28,7 @@ class MainFragment : Fragment() {
 
     private var eventDisposable: Disposable? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         setHasOptionsMenu(true)
         binding = DataBindingUtil.inflate<FragmentMainBinding>(inflater, R.layout.fragment_main, container, false).apply {
             mainVm = mainViewModel
@@ -69,14 +65,9 @@ class MainFragment : Fragment() {
     }
 
     private fun moveToDetailFrag(data: ProductItem) {
-        val action =
-            MainFragmentDirections.actionMainFragmentToDetailFragment()
-//        requireActivity().findNavController(R.id.nav_host_fragment_container).navigate(action)
-
-        Navigation.findNavController(requireActivity(), (R.id.nav_host_fragment_container))
-            .navigate(action)
+        val action = MainFragmentDirections.actionMainFragmentToDetailFragment(data)
+        Navigation.findNavController(requireActivity(), (R.id.nav_host_fragment_container)).navigate(action)
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -87,9 +78,9 @@ class MainFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         eventDisposable?.dispose()
     }
+
 }

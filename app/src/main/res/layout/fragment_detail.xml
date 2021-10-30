@@ -6,8 +6,9 @@
     <data>
 
         <variable
-            name="data"
-            type="hyunju.com.pr20211027.main.network.ProductItem" />
+            name="detailVm"
+            type="hyunju.com.pr20211027.detail.vm.DetailViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,10 +19,9 @@
 
         <ImageView
             android:id="@+id/detailIv"
-            setImgUri="@{data.image}"
+            setImgUri="@{detailVm.data.image}"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:background="@color/c_66000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0" />
@@ -30,23 +30,38 @@
             android:id="@+id/detailName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@{data.name}"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@{detailVm.data.name}"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailIv"
-            tools:text="상품명 " />
+            tools:text="상품명" />
 
         <TextView
             android:id="@+id/detailPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@{data.price}"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@{detailVm.data.price}"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailName"
-            tools:text="상품명 " />
+            tools:text="가격" />
+
+        <TextView
+            android:id="@+id/detailDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="@{detailVm.data.detail}"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailPrice"
+            tools:text="설명" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
