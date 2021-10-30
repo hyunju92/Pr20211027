@@ -6,10 +6,12 @@ import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.FragmentDetailBinding
+import hyunju.com.pr20211027.detail.vm.DetailViewModel
 import hyunju.com.pr20211027.home.vm.HomeViewModel
 
 @AndroidEntryPoint
@@ -17,6 +19,7 @@ class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
 
+    private val detailViewModel: DetailViewModel by viewModels()
     private val sharedViewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

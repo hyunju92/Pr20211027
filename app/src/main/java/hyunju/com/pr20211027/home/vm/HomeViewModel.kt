@@ -1,10 +1,13 @@
 package hyunju.com.pr20211027.home.vm
 
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
 import java.util.*
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel(){
+@HiltViewModel
+class HomeViewModel @Inject constructor(): ViewModel(){
     val currentItemList = LinkedList<ProductItem>()
 
     fun addCurrentList(data: ProductItem) {
