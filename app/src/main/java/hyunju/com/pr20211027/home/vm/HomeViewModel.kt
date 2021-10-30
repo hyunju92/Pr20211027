@@ -1,6 +1,7 @@
 package hyunju.com.pr20211027.home.vm
 
 import android.util.Log
+import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
@@ -9,21 +10,24 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(): ViewModel(){
-    val currentItemList = LinkedList<ProductItem>()
+    val currentItemList = ObservableField<LinkedList<ProductItem>>()
 
     fun addCurrentList(data: ProductItem) {
-        currentItemList.let {
-            if(it.contains(data)) {
-                it.remove(data)
+        val newList = currentItemList.get()?.apply {
+            if (contains(data)) {
+                remove(data)
             }
-            it.addFirst(data)
-            Log.d("testCurrentList", "addCurrentList size ${it.size} ")
-        }
+            addFirst(data)
 
+        } ?: LinkedList<ProductItem>().apply { add(data) }
+
+        currentItemList.set(newList)
     }
 
     fun removeCurrentList(data: ProductItem) {
-        currentItemList.remove(data)
+        val newList = currentItemList.get()?.apply{ remove(data) }
+        currentItemList.set(newList)
+
     }
 
 }

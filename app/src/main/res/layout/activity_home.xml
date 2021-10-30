@@ -5,9 +5,7 @@
 
     <data>
 
-        <import
-            alias="ExtensionUtil"
-            type="hyunju.com.pr20211027.util.BindingAdapterUtilKt" />
+
 
     </data>
 
