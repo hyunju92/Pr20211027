@@ -11,13 +11,17 @@ import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.FragmentDetailBinding
+import hyunju.com.pr20211027.detail.vm.DetailUiEvent
 import hyunju.com.pr20211027.detail.vm.DetailViewModel
 import hyunju.com.pr20211027.home.vm.HomeViewModel
+import hyunju.com.pr20211027.main.network.ProductItem
+import io.reactivex.rxjava3.disposables.Disposable
 
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
+    private var eventDisposable: Disposable? = null
 
     private val detailViewModel: DetailViewModel by viewModels()
     private val sharedViewModel: HomeViewModel by activityViewModels()
@@ -29,7 +33,7 @@ class DetailFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            android.R.id.home -> backToMainFragment()
+            android.R.id.home -> detailViewModel.onBackPressed()
         }
         return true
     }
@@ -50,7 +54,7 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setBackPressed()
-        initView()
+        observeLiveData()
     }
 
     private fun initData() {
@@ -61,17 +65,29 @@ class DetailFragment : Fragment() {
 
     private fun setBackPressed() {
         val callback: OnBackPressedCallback = object : OnBackPressedCallback(true ) {
-            override fun handleOnBackPressed() { backToMainFragment() }
+            override fun handleOnBackPressed() {
+                detailViewModel.onBackPressed()
+            }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
-    private fun initView() {
+    private fun observeLiveData() {
+        eventDisposable = detailViewModel.uiEvent.subscribe {
+            handleUiEvent(it)
+        }
+    }
 
+    private fun handleUiEvent(uiEvent: DetailUiEvent) = when(uiEvent) {
+        DetailUiEvent.BackToMain -> backToMainFragment()
     }
 
     private fun backToMainFragment() {
         Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container).navigateUp()
+    }
+
+    private fun addCurrentList(data: ProductItem){
+        sharedViewModel.addCurrentList(data)
     }
 
 
