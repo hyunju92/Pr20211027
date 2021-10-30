@@ -27,7 +27,7 @@
         <hyunju.com.pr20211027.home.view.CustomNavigation
             android:id="@+id/homeNav"
             replaceCustomNavListItem="@{homeVm.currentItemList}"
-            android:layout_width="180dp"
+            android:layout_width="240dp"
             android:layout_height="match_parent"
             android:layout_gravity="end"
             android:fitsSystemWindows="true" />

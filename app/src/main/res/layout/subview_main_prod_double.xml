@@ -16,10 +16,6 @@
             name="data"
             type="hyunju.com.pr20211027.main.view.data.MainProdDoubleItem" />
 
-        <import
-            alias="ExtensionUtil"
-            type="hyunju.com.pr20211027.util.BindingAdapterUtilKt" />
-
     </data>
 
 
