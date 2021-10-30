@@ -1,6 +1,5 @@
 package hyunju.com.pr20211027.util
 
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout

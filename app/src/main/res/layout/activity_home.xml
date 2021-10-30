@@ -5,7 +5,9 @@
 
     <data>
 
-
+        <variable
+            name="homeVm"
+            type="hyunju.com.pr20211027.home.vm.HomeViewModel" />
 
     </data>
 
@@ -24,7 +26,7 @@
 
         <hyunju.com.pr20211027.home.view.CustomNavigation
             android:id="@+id/homeNav"
-            replaceCustomNavListItem="@{null}"
+            replaceCustomNavListItem="@{homeVm.currentItemList}"
             android:layout_width="180dp"
             android:layout_height="match_parent"
             android:layout_gravity="end"

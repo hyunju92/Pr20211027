@@ -9,16 +9,17 @@ import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.ItemCurrentBinding
 import hyunju.com.pr20211027.main.network.ProductItem
 import hyunju.com.pr20211027.util.RecyclerAdapter
+import java.util.*
 
 class CurrentAdapter() : RecyclerView.Adapter<CurrentAdapter.CurrentViewHolder>(),
     RecyclerAdapter<ProductItem> {
-    private var productList: ArrayList<ProductItem>? = null
+    private var productList: LinkedList<ProductItem>? = null
 
     override fun replaceAll(recyclerView: RecyclerView, listItem: List<ProductItem>?) {
         listItem?.let { newList ->
-            if (productList == newList) {
+            if (productList == null) {
                 productList?.clear()
-                productList = listItem as ArrayList<ProductItem>
+                productList = listItem as LinkedList<ProductItem>
 
                 notifyDataSetChanged()
             } else {

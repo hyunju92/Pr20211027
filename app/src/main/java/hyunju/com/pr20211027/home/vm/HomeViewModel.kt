@@ -1,6 +1,5 @@
 package hyunju.com.pr20211027.home.vm
 
-import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
