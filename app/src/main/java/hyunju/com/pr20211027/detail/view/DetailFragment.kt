@@ -54,7 +54,7 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setBackPressed()
+        initView()
         observeLiveData()
     }
 
@@ -64,13 +64,14 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private fun setBackPressed() {
+    private fun initView() {
         val callback: OnBackPressedCallback = object : OnBackPressedCallback(true ) {
             override fun handleOnBackPressed() {
                 detailViewModel.onBackPressed()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+        sharedViewModel.setDrawerLockState(true)
     }
 
     private fun observeLiveData() {

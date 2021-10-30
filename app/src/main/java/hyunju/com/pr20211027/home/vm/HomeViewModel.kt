@@ -41,6 +41,14 @@ class HomeViewModel @Inject constructor(): ViewModel(){
         uiEvent.onNext(HomeUiEvent.OpenDrawer)
     }
 
+    fun setDrawerLockState(isLock: Boolean){
+        if(isLock) {
+            uiEvent.onNext(HomeUiEvent.LockDrawer)
+        } else{
+            uiEvent.onNext(HomeUiEvent.UnlockDrawer)
+        }
+    }
+
     private fun refreshCurrentList(newList: List<ProductItem>) {
         currentItemList.set(newList)
         currentItemList.notifyChange()

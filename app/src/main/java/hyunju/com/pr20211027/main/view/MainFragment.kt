@@ -50,6 +50,7 @@ class MainFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = MainAdapter(mainViewModel, sharedViewModel)
         }
+        sharedViewModel.setDrawerLockState(false)
     }
 
     private fun observeData() {
