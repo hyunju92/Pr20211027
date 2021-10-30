@@ -50,7 +50,7 @@ class DetailFragment : Fragment() {
         val callback: OnBackPressedCallback = object : OnBackPressedCallback(true ) {
             override fun handleOnBackPressed() { backToMainFragment() }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
     private fun backToMainFragment() {
