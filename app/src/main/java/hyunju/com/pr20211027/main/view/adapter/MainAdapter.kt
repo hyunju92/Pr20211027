@@ -22,16 +22,11 @@ class MainAdapter(
         listItem?.let { newList ->
             if (mainList == null) {
                 mainList?.clear()
-                mainList = listItem as ArrayList<MainUiItem>
+                mainList = newList as ArrayList<MainUiItem>
 
                 notifyDataSetChanged()
             } else {
-                val diffResult = DiffUtil.calculateDiff(
-                    MainDiffUtil(
-                        mainList!!,
-                        newList
-                    )
-                )
+                val diffResult = DiffUtil.calculateDiff(MainDiffUtil(mainList!!, newList))
                 mainList!!.clear()
                 mainList!!.addAll(newList)
 

@@ -9,10 +9,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(): ViewModel(){
-    val currentItemList = ObservableField<LinkedList<ProductItem>>()
+    val currentItemList = ObservableField<List<ProductItem>>()
 
     fun addCurrentList(data: ProductItem) {
+
         val newList = currentItemList.get()?.apply {
+            this as LinkedList
             if (contains(data)) {
                 remove(data)
             }
@@ -21,10 +23,14 @@ class HomeViewModel @Inject constructor(): ViewModel(){
         } ?: LinkedList<ProductItem>().apply { add(data) }
 
         currentItemList.set(newList)
+        currentItemList.notifyChange()
     }
 
     fun removeCurrentList(data: ProductItem) {
-        val newList = currentItemList.get()?.apply{ remove(data) }
+        val newList = currentItemList.get()?.apply{
+            this as LinkedList
+            remove(data)
+        }
         currentItemList.set(newList)
 
     }
