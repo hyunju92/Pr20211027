@@ -28,8 +28,11 @@ class HomeActivity : AppCompatActivity() {
         val navView: NavigationView = binding.homeNav
         val navController = findNavController(R.id.nav_host_fragment_container)
 
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+
+
 //        navView.setupWithNavController(navController)
-        NavigationUI.setupActionBarWithNavController(this, navController)
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
 
     }
 
