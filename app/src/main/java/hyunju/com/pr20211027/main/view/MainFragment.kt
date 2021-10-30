@@ -64,11 +64,16 @@ class MainFragment : Fragment() {
 
     private fun handleUiEvent(uiEvent: MainUiEvent) = when (uiEvent) {
         is MainUiEvent.MoveDetail -> moveToDetailFrag(uiEvent.data)
+        MainUiEvent.OpenHomeDrawer -> openHomeDrawer()
     }
 
     private fun moveToDetailFrag(data: ProductItem) {
         val action = MainFragmentDirections.actionMainFragmentToDetailFragment(data)
         Navigation.findNavController(requireActivity(), (R.id.nav_host_fragment_container)).navigate(action)
+    }
+
+    private fun openHomeDrawer(){
+        sharedViewModel.openDrawer()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -77,7 +82,8 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
+        mainViewModel.clickMainMenu(item.itemId)
+        return true
     }
 
     override fun onDestroyView() {

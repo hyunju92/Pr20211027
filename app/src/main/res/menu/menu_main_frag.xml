@@ -4,7 +4,7 @@
 
     <item
         app:showAsAction="always"
-        android:id="@+id/save"
-        android:title="메인 화면 메뉴" />
+        android:id="@+id/mainMenuCurrent"
+        android:title="최근본상품" />
 
 </menu>

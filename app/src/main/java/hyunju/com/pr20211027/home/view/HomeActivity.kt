@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Gravity
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,7 +53,10 @@ class HomeActivity : AppCompatActivity() {
 
     private fun handleUiEvent(uiEvent: HomeUiEvent) = when(uiEvent) {
         is HomeUiEvent.MoveDetail -> moveToDetailFrag(uiEvent.data)
+        HomeUiEvent.OpenDrawer -> openDrawer()
         HomeUiEvent.CloseDrawer -> closeDrawer()
+        HomeUiEvent.LockDrawer -> lockedDrawer()
+        HomeUiEvent.UnlockDrawer -> unLockedDrawer()
     }
 
     private fun moveToDetailFrag(data: ProductItem) {
@@ -69,6 +73,14 @@ class HomeActivity : AppCompatActivity() {
 
     private fun closeDrawer() {
         binding.homeDrawer.closeDrawer(Gravity.RIGHT)
+    }
+
+    private fun lockedDrawer() {
+        binding.homeDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+    }
+
+    private fun unLockedDrawer(){
+        binding.homeDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
     }
 
     private fun getNavController() = findNavController(R.id.nav_host_fragment_container)

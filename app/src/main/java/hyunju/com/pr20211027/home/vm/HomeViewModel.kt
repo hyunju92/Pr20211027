@@ -37,6 +37,10 @@ class HomeViewModel @Inject constructor(): ViewModel(){
         uiEvent.onNext(HomeUiEvent.CloseDrawer)
     }
 
+    fun openDrawer() {
+        uiEvent.onNext(HomeUiEvent.OpenDrawer)
+    }
+
     private fun refreshCurrentList(newList: List<ProductItem>) {
         currentItemList.set(newList)
         currentItemList.notifyChange()
@@ -46,5 +50,8 @@ class HomeViewModel @Inject constructor(): ViewModel(){
 
 sealed class HomeUiEvent {
     data class MoveDetail(val data: ProductItem) : HomeUiEvent()
+    object OpenDrawer : HomeUiEvent()
     object CloseDrawer : HomeUiEvent()
+    object LockDrawer : HomeUiEvent()
+    object UnlockDrawer : HomeUiEvent()
 }

@@ -3,6 +3,7 @@ package hyunju.com.pr20211027.main.vm
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.main.model.MainRepository
 import hyunju.com.pr20211027.main.network.ProductItem
 import hyunju.com.pr20211027.main.view.data.MainCurrentItem
@@ -41,6 +42,12 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
         uiEvent.onNext(MainUiEvent.MoveDetail(data))
     }
 
+    fun clickMainMenu(menuItemId: Int) {
+        when(menuItemId) {
+            R.id.mainMenuCurrent -> uiEvent.onNext(MainUiEvent.OpenHomeDrawer)
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
         disposable.clear()
@@ -49,4 +56,5 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
 
 sealed class MainUiEvent {
     data class MoveDetail(val data: ProductItem) : MainUiEvent()
+    object OpenHomeDrawer : MainUiEvent()
 }
