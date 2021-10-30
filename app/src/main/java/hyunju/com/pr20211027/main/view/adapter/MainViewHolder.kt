@@ -40,20 +40,26 @@ class ProdDoubleViewHolder(private val binding: SubviewMainProdDoubleBinding): M
     }
 }
 
-class CurrentViewHolder(private val binding: SubviewMainCurrentBinding): MainViewHolder(binding.root) {
+class CurrentViewHolder(private val binding: SubviewMainCurrentBinding, private val sharedViewModel: HomeViewModel,private val rvViewPool: RecyclerView.RecycledViewPool): MainViewHolder(binding.root) {
+
+    init {
+        binding.subviewMainCurrentRv.run { setRecycledViewPool(rvViewPool) }
+    }
+
     override fun bind(data: MainUiItem) {
         if(data is MainCurrentItem) {
             binding.data = data
+            binding.subviewMainCurrentRv.adapter = MainCurrentAdapter(sharedViewModel)
         }
     }
 
-    fun onAdProductDataChanged(data: MainCurrentItem) {
+    fun onCurrentDataChanged(data: MainCurrentItem) {
         binding.data = data
     }
 }
 
 object MainViewHolderFactory {
-    fun getViewHolder(type: MainUiItemType, parent: ViewGroup, mainViewModel: MainViewModel, sharedViewModel: HomeViewModel,rvViewPool: RecyclerView.RecycledViewPool) : MainViewHolder {
+    fun getViewHolder(type: MainUiItemType, parent: ViewGroup, mainViewModel: MainViewModel, sharedViewModel: HomeViewModel, rvViewPool: RecyclerView.RecycledViewPool) : MainViewHolder {
         val layoutId = getLayoutId(type)
 
         return when (type) {
@@ -82,7 +88,7 @@ object MainViewHolderFactory {
                 .let {
                     it.mainViewModel = mainViewModel
                     it.sharedViewModel = sharedViewModel
-                    CurrentViewHolder(it)
+                    CurrentViewHolder(it, sharedViewModel, rvViewPool)
                 }
 
         }

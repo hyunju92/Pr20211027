@@ -59,7 +59,7 @@ class MainFragment : Fragment() {
     }
 
     private fun initAction() {
-        mainViewModel.getMainData()
+        mainViewModel.getMainUiData(sharedViewModel.currentItemList)
     }
 
     private fun handleUiEvent(uiEvent: MainUiEvent) = when (uiEvent) {

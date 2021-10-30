@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import hyunju.com.pr20211027.main.model.MainRepository
 import hyunju.com.pr20211027.main.network.ProductItem
+import hyunju.com.pr20211027.main.view.data.MainCurrentItem
 import hyunju.com.pr20211027.main.view.data.MainUiItem
 import hyunju.com.pr20211027.main.view.data.toMainUiItemList
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -21,10 +22,14 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
 
     val uiEvent = PublishSubject.create<MainUiEvent>()
 
-    fun getMainData(){
+    fun getMainUiData(currentItemList: ObservableField<List<ProductItem>>){
         disposable.add(mainRepository.getMainData()
             .subscribeOn(Schedulers.computation())
-            .map { it.toMainUiItemList() }
+            .map {
+                it.toMainUiItemList().toMutableList().apply {
+                    add(1, MainCurrentItem(currentItemList))    // 최근본상품 리스트 추가
+                }
+            }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 mainItemList.set(it)

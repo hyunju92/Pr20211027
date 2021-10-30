@@ -47,15 +47,9 @@ class MainAdapter(
         mainList?.let { holder.bind(it[position]) }
     }
 
-    override fun onBindViewHolder(
-        holder: MainViewHolder,
-        position: Int,
-        payloads: MutableList<Any>
-    ) {
+    override fun onBindViewHolder(holder: MainViewHolder, position: Int, payloads: MutableList<Any>) {
         if (payloads.isNotEmpty() && holder is CurrentViewHolder) {
-            (payloads[0] as? MainCurrentItem)?.let {
-                holder.onAdProductDataChanged(it)
-            }
+            (payloads[0] as? MainCurrentItem)?.let { holder.onCurrentDataChanged(it) }
         } else {
             super.onBindViewHolder(holder, position, payloads)
         }

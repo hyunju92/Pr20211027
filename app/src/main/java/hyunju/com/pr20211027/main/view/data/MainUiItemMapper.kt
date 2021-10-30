@@ -7,9 +7,9 @@ fun ResMainData.toMainUiItemList(): List<MainUiItem> {
     val list = mutableListOf<MainUiItem>()
     var countProductItem = 0
 
-    data?.forEach {
-        val type = safeUnboxing(it.viewtype)
-        val prodItem = it.data ?: return@forEach
+    data?.forEachIndexed { index, item ->
+        val type = safeUnboxing(item.viewtype)
+        val prodItem = item.data ?: return@forEachIndexed
 
         when (type) {
             "image" -> list.add(MainImageItem(prodItem))
@@ -18,7 +18,6 @@ fun ResMainData.toMainUiItemList(): List<MainUiItem> {
                     list.add(mainUiItem)
                 }
             }
-
         }
     }
 
@@ -26,7 +25,7 @@ fun ResMainData.toMainUiItemList(): List<MainUiItem> {
 }
 
 // viewtype이 productItem일 경우,
-// 3번째까지는 싱글로 (1줄에1개)
+// 3번째 productItem까지는 싱글로 (1줄에1개)
 // 4개부터는 더블로 표시하도록 함 (1줄에2개)
 var prod1: ProductItem? = null
 private fun getItemFromProductItem(prodItem: ProductItem, countProductItem: Int): MainUiItem? {

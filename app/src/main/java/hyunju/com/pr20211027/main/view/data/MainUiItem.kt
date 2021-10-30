@@ -21,7 +21,7 @@ data class MainProdDoubleItem(
 ) : MainUiItem(MainUiItemType.ProdDouble)
 
 data class MainCurrentItem(
-    val prod: ObservableField<List<ProductItem>>
+    val currentItemList: ObservableField<List<ProductItem>>
 ) : MainUiItem(MainUiItemType.Current)
 
 sealed class MainUiItemType(val code: Int) {
