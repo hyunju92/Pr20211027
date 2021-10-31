@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import hyunju.com.pr20211027.R
@@ -51,7 +50,7 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        mainViewModel.clickMainMenu(item.itemId)
+        mainViewModel.clickMenu(item.itemId)
         return true
     }
 
@@ -60,7 +59,7 @@ class MainFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = MainAdapter(mainViewModel, sharedViewModel)
         }
-        
+
         sharedViewModel.setDrawerLockState(false)
     }
 

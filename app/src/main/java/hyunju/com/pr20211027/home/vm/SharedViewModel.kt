@@ -57,9 +57,13 @@ class SharedViewModel @Inject constructor(): ViewModel(){
         }
     }
 
-    // move detail
+    // move
     fun moveDetail(data: ProductItem){
         uiEvent.onNext(HomeUiEvent.MoveDetail(data))
+    }
+
+    fun moveBack(){
+        uiEvent.onNext(HomeUiEvent.MoveBack)
     }
 
     // home backpressed
@@ -77,6 +81,7 @@ class SharedViewModel @Inject constructor(): ViewModel(){
 sealed class HomeUiEvent {
     data class MoveDetail(val data: ProductItem) : HomeUiEvent()
     data class SetDrawerLockState(val isLock: Boolean) : HomeUiEvent()
+    object MoveBack : HomeUiEvent()
     object OpenDrawer : HomeUiEvent()
     object CloseDrawer : HomeUiEvent()
     object BackPressed : HomeUiEvent()

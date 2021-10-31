@@ -26,13 +26,6 @@ class DetailFragment : Fragment() {
     private val detailViewModel: DetailViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> detailViewModel.onBackPressed()
-        }
-        return true
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initData()
@@ -50,6 +43,11 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
         observeLiveData()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        detailViewModel.clickMenu(item.itemId)
+        return true
     }
 
     private fun initData() {
@@ -74,23 +72,24 @@ class DetailFragment : Fragment() {
         }
     }
 
+    // ui Event
     private fun handleUiEvent(uiEvent: DetailUiEvent) = when(uiEvent) {
         DetailUiEvent.BackToMain -> backToMainFragment()
         is DetailUiEvent.AddCurrentList -> addCurrentList(uiEvent.data)
     }
 
     private fun backToMainFragment() {
-        Navigation.findNavController(requireActivity(), R.id.homeNavHostFrag).navigateUp()
+        sharedViewModel.moveBack()
     }
 
     private fun addCurrentList(data: ProductItem){
         sharedViewModel.addCurrentList(data)
     }
 
+    // override destroy
     override fun onDestroyView() {
         super.onDestroyView()
         eventDisposable?.dispose()
     }
-
 
 }

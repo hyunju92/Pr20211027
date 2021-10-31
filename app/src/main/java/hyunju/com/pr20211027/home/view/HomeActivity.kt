@@ -56,6 +56,7 @@ class HomeActivity : AppCompatActivity() {
     private fun handleUiEvent(uiEvent: HomeUiEvent) = when (uiEvent) {
         is HomeUiEvent.MoveDetail -> moveToDetailFrag(uiEvent.data)
         is HomeUiEvent.SetDrawerLockState -> setDrawerLockState(uiEvent.isLock)
+        HomeUiEvent.MoveBack -> moveBackFrag()
         HomeUiEvent.OpenDrawer -> openDrawer()
         HomeUiEvent.CloseDrawer -> closeDrawer()
         HomeUiEvent.BackPressed -> backPressed()
@@ -66,6 +67,10 @@ class HomeActivity : AppCompatActivity() {
             navigateUp()
             navigate(R.id.detailFragment, Bundle().apply { putParcelable("data", data) })
         }
+    }
+
+    private fun moveBackFrag() {
+        getNavController().navigateUp()
     }
 
     private fun openDrawer() {

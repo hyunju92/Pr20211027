@@ -44,7 +44,7 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
         uiEvent.onNext(MainUiEvent.MoveDetail(data))
     }
 
-    fun clickMainMenu(menuItemId: Int) {
+    fun clickMenu(menuItemId: Int) {
         when(menuItemId) {
             R.id.mainMenuCurrent -> uiEvent.onNext(MainUiEvent.OpenHomeDrawer)
         }
