@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="hyunju.com.pr20211027.main.view.MainFragment"
-        android:label="main"
+        android:label=""
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_detailFragment"
@@ -24,7 +24,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="hyunju.com.pr20211027.detail.view.DetailFragment"
-        android:label="detail"
+        android:label=""
         tools:layout="@layout/fragment_detail">
 
         <argument
