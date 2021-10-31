@@ -15,7 +15,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:onClick="@{() -> sharedVm.clickProductView(data)}"
+        android:onClick="@{() -> sharedVm.clickDrawerCurrentItem(data)}"
         android:id="@+id/customNavRvItemCl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

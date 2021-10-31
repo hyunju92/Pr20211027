@@ -14,6 +14,7 @@ class SharedViewModel @Inject constructor(): ViewModel(){
     val currentItemList = ObservableField<List<ProductItem>>()
     val uiEvent = PublishSubject.create<HomeUiEvent>()
 
+    // currentItemList
     fun addCurrentList(data: ProductItem) {
         val newList = currentItemList.get()?.toMutableList()?.apply {
             if (contains(data)) { remove(data) }
@@ -32,7 +33,14 @@ class SharedViewModel @Inject constructor(): ViewModel(){
         refreshCurrentList(newList)
     }
 
-    fun clickProductView(data: ProductItem){
+    private fun refreshCurrentList(newList: List<ProductItem>) {
+        currentItemList.set(newList)
+        currentItemList.notifyChange()
+    }
+
+
+    //  drawer
+    fun clickDrawerCurrentItem(data: ProductItem){
         uiEvent.onNext(HomeUiEvent.MoveDetail(data))
         uiEvent.onNext(HomeUiEvent.CloseDrawer)
     }
@@ -43,23 +51,29 @@ class SharedViewModel @Inject constructor(): ViewModel(){
 
     fun setDrawerLockState(isLock: Boolean){
         if(isLock) {
-            uiEvent.onNext(HomeUiEvent.LockDrawer)
+            uiEvent.onNext(HomeUiEvent.SetDrawerLockState(true))
         } else{
-            uiEvent.onNext(HomeUiEvent.UnlockDrawer)
+            uiEvent.onNext(HomeUiEvent.SetDrawerLockState(false))
         }
     }
 
-    private fun refreshCurrentList(newList: List<ProductItem>) {
-        currentItemList.set(newList)
-        currentItemList.notifyChange()
+
+    // home backpressed
+    fun homeBackPressedAction(isDrawerOpen: Boolean) {
+        if(isDrawerOpen) {
+            uiEvent.onNext(HomeUiEvent.CloseDrawer)
+        } else {
+            uiEvent.onNext(HomeUiEvent.BackPressed)
+        }
     }
+
 }
 
 
 sealed class HomeUiEvent {
     data class MoveDetail(val data: ProductItem) : HomeUiEvent()
+    data class SetDrawerLockState(val isLock: Boolean) : HomeUiEvent()
     object OpenDrawer : HomeUiEvent()
     object CloseDrawer : HomeUiEvent()
-    object LockDrawer : HomeUiEvent()
-    object UnlockDrawer : HomeUiEvent()
+    object BackPressed : HomeUiEvent()
 }

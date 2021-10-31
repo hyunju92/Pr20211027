@@ -70,7 +70,7 @@ class MainFragment : Fragment() {
 
     private fun moveToDetailFrag(data: ProductItem) {
         val action = MainFragmentDirections.actionMainFragmentToDetailFragment(data)
-        Navigation.findNavController(requireActivity(), (R.id.nav_host_fragment_container)).navigate(action)
+        Navigation.findNavController(requireActivity(), (R.id.homeNavHostFrag)).navigate(action)
     }
 
     private fun openHomeDrawer(){

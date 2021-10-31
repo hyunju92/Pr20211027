@@ -80,7 +80,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun backToMainFragment() {
-        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container).navigateUp()
+        Navigation.findNavController(requireActivity(), R.id.homeNavHostFrag).navigateUp()
     }
 
     private fun addCurrentList(data: ProductItem){

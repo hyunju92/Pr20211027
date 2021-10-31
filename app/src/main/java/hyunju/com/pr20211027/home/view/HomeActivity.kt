@@ -33,9 +33,7 @@ class HomeActivity : AppCompatActivity() {
         observeData()
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return findNavController(R.id.nav_host_fragment_container).navigateUp()
-    }
+    override fun onSupportNavigateUp() = getNavController().navigateUp()
 
     private fun initView() {
         setSupportActionBar(binding.homeContents.toolbar)
@@ -51,19 +49,21 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleUiEvent(uiEvent: HomeUiEvent) = when(uiEvent) {
+    private fun getNavController() = findNavController(R.id.homeNavHostFrag)
+
+    // ui Event
+    private fun handleUiEvent(uiEvent: HomeUiEvent) = when (uiEvent) {
         is HomeUiEvent.MoveDetail -> moveToDetailFrag(uiEvent.data)
+        is HomeUiEvent.SetDrawerLockState -> setDrawerLockState(uiEvent.isLock)
         HomeUiEvent.OpenDrawer -> openDrawer()
         HomeUiEvent.CloseDrawer -> closeDrawer()
-        HomeUiEvent.LockDrawer -> lockedDrawer()
-        HomeUiEvent.UnlockDrawer -> unLockedDrawer()
+        HomeUiEvent.BackPressed -> backPressed()
     }
 
     private fun moveToDetailFrag(data: ProductItem) {
         getNavController().run {
             navigateUp()
-            val args = Bundle().apply { putParcelable("data", data) }
-            navigate(R.id.detailFragment, args)
+            navigate(R.id.detailFragment, Bundle().apply { putParcelable("data", data) })
         }
     }
 
@@ -75,24 +75,19 @@ class HomeActivity : AppCompatActivity() {
         binding.homeDrawer.closeDrawer(Gravity.RIGHT)
     }
 
-    private fun lockedDrawer() {
-        binding.homeDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+    private fun setDrawerLockState(isLock : Boolean) {
+        val mode = if (isLock) DrawerLayout.LOCK_MODE_LOCKED_CLOSED else DrawerLayout.LOCK_MODE_UNLOCKED
+        binding.homeDrawer.setDrawerLockMode(mode)
     }
 
-    private fun unLockedDrawer(){
-        binding.homeDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+    private fun backPressed() {
+       super.onBackPressed()
     }
 
-    private fun getNavController() = findNavController(R.id.nav_host_fragment_container)
-
-    private fun isDrawerOpen() = binding.homeDrawer.isDrawerOpen(Gravity.RIGHT)
-
+    // override
     override fun onBackPressed() {
-        if(isDrawerOpen()) {
-            closeDrawer()
-        } else {
-            super.onBackPressed()
-        }
+        val isDrawerOpen = binding.homeDrawer.isDrawerOpen(Gravity.RIGHT)
+        sharedViewModel.homeBackPressedAction(isDrawerOpen)
     }
 
     override fun onDestroy() {
