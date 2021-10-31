@@ -34,15 +34,40 @@ fun setImgUrl(imageView: ImageView, url: String?) {
         .into(imageView)
 }
 
-@BindingAdapter("setCommonCardHeight")
-fun setCommonCardHeight(view: ConstraintLayout, cardCount: Int?) {
-    if (cardCount == null || cardCount < 2) return
+@BindingAdapter("setCommonCardHeightWidth")
+fun setCommonCardHeightWidth(view: ConstraintLayout, cardCount: Int?) {
+    if (cardCount == null) return
 
-    val pxWidth = view.resources.displayMetrics.widthPixels
+    val disWidthPx = view.resources.displayMetrics.widthPixels
     val layoutParams: ViewGroup.LayoutParams = view.layoutParams
-    layoutParams.height = ((pxWidth / cardCount) * 1.3).toInt()
+
+    val width = if (cardCount > 1) {
+        disWidthPx / cardCount * 0.95
+    } else {
+        disWidthPx * 0.95
+    }
+
+    val height = if(cardCount > 1) {
+        width * 1.5
+    } else {
+        width * 0.65
+    }
+
+
+    layoutParams.width = width.toInt()
+    layoutParams.height = height.toInt()
     view.layoutParams = layoutParams
 }
+
+@BindingAdapter("setMainImageHeigth")
+fun setMainImageHeigth(view: View, boolean: Boolean){
+    val disWidthPx = view.resources.displayMetrics.widthPixels
+    val layoutParams: ViewGroup.LayoutParams = view.layoutParams
+
+    layoutParams.height = (disWidthPx * 0.65 * 0.7).toInt()
+    view.layoutParams = layoutParams
+}
+
 
 @BindingAdapter("replaceCustomNavListItem")
 fun replaceCustomNavListItem(view: CustomNavigation, listItem: List<ProductItem>?) {

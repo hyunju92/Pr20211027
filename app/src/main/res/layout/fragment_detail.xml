@@ -24,10 +24,11 @@
                 android:id="@+id/detailCl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:padding="12dp">
 
                 <ImageView
                     android:id="@+id/detailIv"
+                    android:scaleType="centerCrop"
                     setImgUri="@{detailVm.data.image}"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"

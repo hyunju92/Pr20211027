@@ -21,16 +21,17 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/subviewMainImageCl"
+        setMainImageHeigth="@{true}"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
 
         <ImageView
             android:id="@+id/subviewMainImageIv"
             setImgUri="@{data.prod.image}"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/subview_main_image_height"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

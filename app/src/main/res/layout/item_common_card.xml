@@ -23,7 +23,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/subviewCommonCardCardView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:outlineAmbientShadowColor="@color/c_000000"
         android:outlineSpotShadowColor="@color/c_000000"
@@ -34,9 +34,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/subviewCommonCardCl"
-            setCommonCardHeight="@{cardCount}"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/subview_common_card_height"
+            setCommonCardHeightWidth="@{cardCount}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:onClick="@{() -> mainViewModel.clickProductView(data)}">
 
             <ImageView
@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintHeight_percent="0.65"
+                app:layout_constraintHeight_percent="0.7"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
