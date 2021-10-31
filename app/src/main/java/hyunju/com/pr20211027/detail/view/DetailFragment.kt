@@ -4,26 +4,22 @@ import android.os.Bundle
 import android.view.*
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.FragmentDetailBinding
 import hyunju.com.pr20211027.detail.vm.DetailUiEvent
 import hyunju.com.pr20211027.detail.vm.DetailViewModel
-import hyunju.com.pr20211027.home.vm.SharedViewModel
-import hyunju.com.pr20211027.main.network.ProductItem
+import hyunju.com.pr20211027.home.view.HomeBaseFragment
 import io.reactivex.rxjava3.disposables.Disposable
 
 @AndroidEntryPoint
-class DetailFragment : Fragment() {
+class DetailFragment : HomeBaseFragment() {
 
     private lateinit var binding: FragmentDetailBinding
     private var eventDisposable: Disposable? = null
 
     private val detailViewModel: DetailViewModel by viewModels()
-    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +58,7 @@ class DetailFragment : Fragment() {
             }
         })
 
-        sharedViewModel.setDrawerLockState(true)
+        setHomeDrawerState(true)
     }
 
     private fun observeLiveData() {
@@ -73,16 +69,8 @@ class DetailFragment : Fragment() {
 
     // ui Event
     private fun handleUiEvent(uiEvent: DetailUiEvent) = when(uiEvent) {
-        DetailUiEvent.BackToMain -> backToMainFragment()
-        is DetailUiEvent.AddCurrentList -> addCurrentList(uiEvent.data)
-    }
-
-    private fun backToMainFragment() {
-        sharedViewModel.moveBack()
-    }
-
-    private fun addCurrentList(data: ProductItem){
-        sharedViewModel.addCurrentList(data)
+        DetailUiEvent.BackToMain -> navigateHomeToBack()
+        is DetailUiEvent.AddCurrentList -> addSharedCurrentList(uiEvent.data)
     }
 
     // override destroy

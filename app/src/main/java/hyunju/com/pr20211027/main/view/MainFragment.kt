@@ -3,27 +3,23 @@ package hyunju.com.pr20211027.main.view
 import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.FragmentMainBinding
-import hyunju.com.pr20211027.home.vm.SharedViewModel
-import hyunju.com.pr20211027.main.network.ProductItem
+import hyunju.com.pr20211027.home.view.HomeBaseFragment
 import hyunju.com.pr20211027.main.view.adapter.MainAdapter
 import hyunju.com.pr20211027.main.vm.MainUiEvent
 import hyunju.com.pr20211027.main.vm.MainViewModel
 import io.reactivex.rxjava3.disposables.Disposable
 
 @AndroidEntryPoint
-class MainFragment : Fragment() {
+class MainFragment : HomeBaseFragment() {
 
     private lateinit var binding: FragmentMainBinding
 
     private val mainViewModel: MainViewModel by viewModels()
-    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     private var eventDisposable: Disposable? = null
 
@@ -40,7 +36,7 @@ class MainFragment : Fragment() {
 
         initView()
         observeData()
-        initAction()
+        requestMainData()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -59,7 +55,7 @@ class MainFragment : Fragment() {
             adapter = MainAdapter(mainViewModel)
         }
 
-        sharedViewModel.setDrawerLockState(false)
+        setHomeDrawerState(isLock = false)
     }
 
     private fun observeData() {
@@ -68,25 +64,16 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun initAction() {
-        mainViewModel.getMainUiData(sharedViewModel.currentItemList)
+    private fun requestMainData() {
+        mainViewModel.getMainUiData(getSharedCurrentList())
     }
 
 
     // ui Event
     private fun handleUiEvent(uiEvent: MainUiEvent) = when (uiEvent) {
-        is MainUiEvent.MoveDetail -> moveToDetailFrag(uiEvent.data)
+        is MainUiEvent.MoveDetail -> navigateHomeToDetail(uiEvent.data)
         MainUiEvent.OpenHomeDrawer -> openHomeDrawer()
     }
-
-    private fun moveToDetailFrag(data: ProductItem) {
-        sharedViewModel.moveDetail(data)
-    }
-
-    private fun openHomeDrawer(){
-        sharedViewModel.openDrawer()
-    }
-
 
     // override destroy
     override fun onDestroyView() {

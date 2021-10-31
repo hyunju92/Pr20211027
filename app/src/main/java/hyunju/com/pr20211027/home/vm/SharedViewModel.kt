@@ -38,13 +38,7 @@ class SharedViewModel @Inject constructor(): ViewModel(){
         currentItemList.notifyChange()
     }
 
-
     //  drawer
-    fun clickDrawerCurrentProduct(data: ProductItem){
-        moveDetail(data)
-        uiEvent.onNext(HomeUiEvent.CloseDrawer)
-    }
-
     fun openDrawer() {
         uiEvent.onNext(HomeUiEvent.OpenDrawer)
     }
@@ -73,6 +67,12 @@ class SharedViewModel @Inject constructor(): ViewModel(){
         } else {
             uiEvent.onNext(HomeUiEvent.BackPressed)
         }
+    }
+
+    // current drawer event
+    fun clickDrawerCurrentProduct(data: ProductItem){
+        moveDetail(data)
+        uiEvent.onNext(HomeUiEvent.CloseDrawer)
     }
 
 }
