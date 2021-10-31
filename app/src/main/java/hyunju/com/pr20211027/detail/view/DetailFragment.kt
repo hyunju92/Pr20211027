@@ -1,7 +1,6 @@
 package hyunju.com.pr20211027.detail.view
 
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.view.*
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
@@ -26,11 +25,6 @@ class DetailFragment : Fragment() {
 
     private val detailViewModel: DetailViewModel by viewModels()
     private val sharedViewModel: HomeViewModel by activityViewModels()
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_detail_frag, menu)
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
