@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.ItemDrawerCurrentBinding
-import hyunju.com.pr20211027.home.vm.SharedViewModel
+import hyunju.com.pr20211027.home.vm.HomeViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
 import hyunju.com.pr20211027.util.RecyclerAdapter
 
-class DrawerCurrentAdapter(private val sharedViewModel: SharedViewModel) :
+class DrawerCurrentAdapter(private val homeViewModel: HomeViewModel) :
     RecyclerView.Adapter<DrawerCurrentAdapter.CurrentViewHolder>(), RecyclerAdapter<ProductItem> {
 
     private var productList: ArrayList<ProductItem>? = null
@@ -35,7 +35,7 @@ class DrawerCurrentAdapter(private val sharedViewModel: SharedViewModel) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrentViewHolder {
         return DataBindingUtil.inflate<ItemDrawerCurrentBinding>(LayoutInflater.from(parent.context), R.layout.item_drawer_current, parent, false).let {
-            it.sharedVm = sharedViewModel
+            it.homeVm = homeViewModel
             CurrentViewHolder(it)
         }
     }

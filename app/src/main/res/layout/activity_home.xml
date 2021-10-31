@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="sharedVm"
-            type="hyunju.com.pr20211027.home.vm.SharedViewModel" />
+            name="homeVm"
+            type="hyunju.com.pr20211027.home.vm.HomeViewModel" />
 
     </data>
 
@@ -24,8 +24,8 @@
 
         <hyunju.com.pr20211027.home.view.CustomNavigation
             android:id="@+id/homeNav"
-            replaceCustomNavListItem="@{sharedVm.currentItemList}"
-            setCustomNavViewModel="@{sharedVm}"
+            replaceCustomNavListItem="@{homeVm.currentItemList}"
+            setCustomNavViewModel="@{homeVm}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="end"

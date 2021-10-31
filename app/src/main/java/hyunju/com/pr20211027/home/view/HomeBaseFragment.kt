@@ -3,37 +3,37 @@ package hyunju.com.pr20211027.home.view
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
-import hyunju.com.pr20211027.home.vm.SharedViewModel
+import hyunju.com.pr20211027.home.vm.HomeViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
 
 @AndroidEntryPoint
 open class HomeBaseFragment : Fragment(){
 
-    protected val sharedViewModel: SharedViewModel by activityViewModels()
+    protected val homeViewModel: HomeViewModel by activityViewModels()
 
     // currentList
     protected fun addSharedCurrentList(data: ProductItem){
-        sharedViewModel.addCurrentList(data)
+        homeViewModel.addCurrentList(data)
     }
 
-    protected fun getSharedCurrentList() = sharedViewModel.currentItemList
+    protected fun getSharedCurrentList() = homeViewModel.currentItemList
 
     // drawer
     protected fun setHomeDrawerState(isLock: Boolean) {
-        sharedViewModel.setDrawerLockState(isLock)
+        homeViewModel.setDrawerLockState(isLock)
     }
 
     protected fun openHomeDrawer(){
-        sharedViewModel.openDrawer()
+        homeViewModel.openDrawer()
     }
 
     // navigation move
     protected fun navigateHomeToDetail(data: ProductItem) {
-        sharedViewModel.moveDetail(data)
+        homeViewModel.moveDetail(data)
     }
 
     protected fun navigateHomeToBack() {
-        sharedViewModel.moveBack()
+        homeViewModel.moveBack()
     }
 
 
