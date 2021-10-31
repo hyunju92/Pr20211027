@@ -12,15 +12,7 @@ import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.home.vm.SharedViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
 
-interface RecyclerAdapter<T> {
-    fun replaceAll(recyclerView: RecyclerView, listItem: List<T>?)
-}
-
-@BindingAdapter("replaceAll")
-fun <T> RecyclerView.replaceAll(listItem: List<T>?) {
-    (this.adapter as? RecyclerAdapter<T>)?.replaceAll(this, listItem)
-}
-
+// 레이아웃 공통 사용
 @BindingAdapter("setImgUri")
 fun setImgUrl(imageView: ImageView, url: String?) {
     val loadImg = if (url.isNullOrEmpty()) R.drawable.ic_baseline_error_outline_24 else url
@@ -34,6 +26,36 @@ fun setImgUrl(imageView: ImageView, url: String?) {
         .into(imageView)
 }
 
+@BindingAdapter("setViewVisibility")
+fun setViewVisibility(view: View, isVisible: Boolean) {
+    view.visibility = if (isVisible) View.VISIBLE else View.GONE
+}
+
+
+// RecyclerView
+interface RecyclerAdapter<T> {
+    fun replaceAll(recyclerView: RecyclerView, listItem: List<T>?)
+}
+
+@BindingAdapter("replaceAll")
+fun <T> RecyclerView.replaceAll(listItem: List<T>?) {
+    (this.adapter as? RecyclerAdapter<T>)?.replaceAll(this, listItem)
+}
+
+
+// CustomNavigation
+@BindingAdapter("replaceCustomNavListItem")
+fun replaceCustomNavListItem(view: CustomNavigation, listItem: List<ProductItem>?) {
+    view.replaceListItem(listItem)
+}
+
+@BindingAdapter("setCustomNavViewModel")
+fun setCustomNavViewModel(view: CustomNavigation, sharedViewModel: SharedViewModel) {
+    view.setViewModel(sharedViewModel)
+}
+
+
+// common card item
 @BindingAdapter("setCommonCardHeightWidth")
 fun setCommonCardHeightWidth(view: ConstraintLayout, cardCount: Int?) {
     if (cardCount == null) return
@@ -59,6 +81,7 @@ fun setCommonCardHeightWidth(view: ConstraintLayout, cardCount: Int?) {
     view.layoutParams = layoutParams
 }
 
+// main image type view
 @BindingAdapter("setMainImageHeigth")
 fun setMainImageHeigth(view: View, boolean: Boolean){
     val disWidthPx = view.resources.displayMetrics.widthPixels
@@ -68,19 +91,4 @@ fun setMainImageHeigth(view: View, boolean: Boolean){
     view.layoutParams = layoutParams
 }
 
-
-@BindingAdapter("replaceCustomNavListItem")
-fun replaceCustomNavListItem(view: CustomNavigation, listItem: List<ProductItem>?) {
-    view.replaceListItem(listItem)
-}
-
-@BindingAdapter("setCustomNavViewModel")
-fun setCustomNavViewModel(view: CustomNavigation, sharedViewModel: SharedViewModel) {
-    view.setViewModel(sharedViewModel)
-}
-
-@BindingAdapter("setViewVisibility")
-fun setViewVisibility(view: View, isVisible: Boolean) {
-    view.visibility = if (isVisible) View.VISIBLE else View.GONE
-}
 
