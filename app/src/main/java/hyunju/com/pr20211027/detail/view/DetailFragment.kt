@@ -59,12 +59,12 @@ class DetailFragment : Fragment() {
     }
 
     private fun initView() {
-        val callback: OnBackPressedCallback = object : OnBackPressedCallback(true ) {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 detailViewModel.onBackPressed()
             }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+        })
+
         sharedViewModel.setDrawerLockState(true)
     }
 

@@ -85,6 +85,16 @@ class HomeActivity : AppCompatActivity() {
 
     private fun getNavController() = findNavController(R.id.nav_host_fragment_container)
 
+    private fun isDrawerOpen() = binding.homeDrawer.isDrawerOpen(Gravity.RIGHT)
+
+    override fun onBackPressed() {
+        if(isDrawerOpen()) {
+            closeDrawer()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         eventDisposable?.dispose()
