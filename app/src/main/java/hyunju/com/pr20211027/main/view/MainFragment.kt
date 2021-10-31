@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.FragmentMainBinding
-import hyunju.com.pr20211027.home.vm.HomeViewModel
+import hyunju.com.pr20211027.home.vm.SharedViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
 import hyunju.com.pr20211027.main.view.adapter.MainAdapter
 import hyunju.com.pr20211027.main.vm.MainUiEvent
@@ -24,7 +24,7 @@ class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
 
     private val mainViewModel: MainViewModel by viewModels()
-    private val sharedViewModel: HomeViewModel by activityViewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     private var eventDisposable: Disposable? = null
 

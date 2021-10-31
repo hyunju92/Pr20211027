@@ -8,7 +8,7 @@ import com.google.android.material.navigation.NavigationView
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.current.view.CurrentAdapter
 import hyunju.com.pr20211027.databinding.LayoutCustomNavBinding
-import hyunju.com.pr20211027.home.vm.HomeViewModel
+import hyunju.com.pr20211027.home.vm.SharedViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
 import hyunju.com.pr20211027.util.replaceAll
 
@@ -19,7 +19,7 @@ class CustomNavigation @kotlin.jvm.JvmOverloads constructor(
 
     private lateinit var binding: LayoutCustomNavBinding
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var sharedViewModel: SharedViewModel
 
     init {
         initView()
@@ -40,8 +40,8 @@ class CustomNavigation @kotlin.jvm.JvmOverloads constructor(
         binding.customNavRv.replaceAll(listItem)
     }
 
-    fun setViewModel(homeVm: HomeViewModel) {
-        homeViewModel = homeVm
+    fun setViewModel(sharedVm: SharedViewModel) {
+        sharedViewModel = sharedVm
     }
 
     override fun onAttachedToWindow() {
@@ -50,7 +50,7 @@ class CustomNavigation @kotlin.jvm.JvmOverloads constructor(
 
         binding.customNavRv.run{
             layoutManager = LinearLayoutManager(context)
-            adapter = CurrentAdapter(homeViewModel)
+            adapter = CurrentAdapter(sharedViewModel)
         }
     }
 

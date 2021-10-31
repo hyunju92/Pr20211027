@@ -8,7 +8,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.*
-import hyunju.com.pr20211027.home.vm.HomeViewModel
+import hyunju.com.pr20211027.home.vm.SharedViewModel
 import hyunju.com.pr20211027.main.view.data.*
 import hyunju.com.pr20211027.main.vm.MainViewModel
 
@@ -40,7 +40,7 @@ class ProdDoubleViewHolder(private val binding: SubviewMainProdDoubleBinding): M
     }
 }
 
-class CurrentViewHolder(private val binding: SubviewMainCurrentBinding, private val mainViewModel : MainViewModel, private val sharedViewModel: HomeViewModel,private val rvViewPool: RecyclerView.RecycledViewPool): MainViewHolder(binding.root) {
+class CurrentViewHolder(private val binding: SubviewMainCurrentBinding, private val mainViewModel : MainViewModel, private val sharedViewModel: SharedViewModel, private val rvViewPool: RecyclerView.RecycledViewPool): MainViewHolder(binding.root) {
 
     init {
         binding.subviewMainCurrentRv.run { setRecycledViewPool(rvViewPool) }
@@ -55,7 +55,7 @@ class CurrentViewHolder(private val binding: SubviewMainCurrentBinding, private 
 }
 
 object MainViewHolderFactory {
-    fun getViewHolder(type: MainUiItemType, parent: ViewGroup, mainViewModel: MainViewModel, sharedViewModel: HomeViewModel, rvViewPool: RecyclerView.RecycledViewPool) : MainViewHolder {
+    fun getViewHolder(type: MainUiItemType, parent: ViewGroup, mainViewModel: MainViewModel, sharedViewModel: SharedViewModel, rvViewPool: RecyclerView.RecycledViewPool) : MainViewHolder {
         val layoutId = getLayoutId(type)
 
         return when (type) {

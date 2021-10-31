@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.ActivityHomeBinding
 import hyunju.com.pr20211027.home.vm.HomeUiEvent
-import hyunju.com.pr20211027.home.vm.HomeViewModel
+import hyunju.com.pr20211027.home.vm.SharedViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
 import io.reactivex.rxjava3.disposables.Disposable
 
@@ -20,13 +20,13 @@ import io.reactivex.rxjava3.disposables.Disposable
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by viewModels()
     private var eventDisposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView<ActivityHomeBinding>(this, R.layout.activity_home).apply {
-            homeVm = homeViewModel
+            sharedVm = sharedViewModel
         }
 
         initView()
@@ -46,7 +46,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun observeData() {
-        eventDisposable = homeViewModel.uiEvent.subscribe {
+        eventDisposable = sharedViewModel.uiEvent.subscribe {
             handleUiEvent(it)
         }
     }

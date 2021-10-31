@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="homeVm"
-            type="hyunju.com.pr20211027.home.vm.HomeViewModel" />
+            name="sharedVm"
+            type="hyunju.com.pr20211027.home.vm.SharedViewModel" />
 
         <variable
             name="data"
@@ -15,7 +15,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:onClick="@{() -> homeVm.clickProductView(data)}"
+        android:onClick="@{() -> sharedVm.clickProductView(data)}"
         android:id="@+id/customNavRvItemCl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             android:id="@+id/customNavRvItemDeleteIv"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:onClick="@{() -> homeVm.removeCurrentList(data)}"
+            android:onClick="@{() -> sharedVm.removeCurrentList(data)}"
             android:padding="12dp"
             android:src="@drawable/ic_baseline_clear_24"
             app:layout_constraintBottom_toTopOf="@+id/customNavRvItemDeleteBorder"

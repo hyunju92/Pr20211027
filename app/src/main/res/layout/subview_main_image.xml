@@ -10,7 +10,7 @@
 
         <variable
             name="sharedViewModel"
-            type="hyunju.com.pr20211027.home.vm.HomeViewModel" />
+            type="hyunju.com.pr20211027.home.vm.SharedViewModel" />
 
         <variable
             name="data"

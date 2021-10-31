@@ -9,8 +9,8 @@
             type="hyunju.com.pr20211027.main.vm.MainViewModel" />
 
         <variable
-            name="homeVm"
-            type="hyunju.com.pr20211027.home.vm.HomeViewModel" />
+            name="sharedVm"
+            type="hyunju.com.pr20211027.home.vm.SharedViewModel" />
 
         <variable
             name="data"

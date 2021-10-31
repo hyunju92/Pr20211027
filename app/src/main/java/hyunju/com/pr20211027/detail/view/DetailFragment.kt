@@ -13,7 +13,7 @@ import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.FragmentDetailBinding
 import hyunju.com.pr20211027.detail.vm.DetailUiEvent
 import hyunju.com.pr20211027.detail.vm.DetailViewModel
-import hyunju.com.pr20211027.home.vm.HomeViewModel
+import hyunju.com.pr20211027.home.vm.SharedViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
 import io.reactivex.rxjava3.disposables.Disposable
 
@@ -24,7 +24,7 @@ class DetailFragment : Fragment() {
     private var eventDisposable: Disposable? = null
 
     private val detailViewModel: DetailViewModel by viewModels()
-    private val sharedViewModel: HomeViewModel by activityViewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

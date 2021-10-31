@@ -9,7 +9,7 @@ import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(): ViewModel(){
+class SharedViewModel @Inject constructor(): ViewModel(){
 
     val currentItemList = ObservableField<List<ProductItem>>()
     val uiEvent = PublishSubject.create<HomeUiEvent>()

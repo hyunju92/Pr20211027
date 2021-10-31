@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import hyunju.com.pr20211027.home.view.CustomNavigation
 import hyunju.com.pr20211027.R
-import hyunju.com.pr20211027.home.vm.HomeViewModel
+import hyunju.com.pr20211027.home.vm.SharedViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
 
 interface RecyclerAdapter<T> {
@@ -50,8 +50,8 @@ fun replaceCustomNavListItem(view: CustomNavigation, listItem: List<ProductItem>
 }
 
 @BindingAdapter("setCustomNavViewModel")
-fun setCustomNavViewModel(view: CustomNavigation, homeViewModel: HomeViewModel) {
-    view.setViewModel(homeViewModel)
+fun setCustomNavViewModel(view: CustomNavigation, sharedViewModel: SharedViewModel) {
+    view.setViewModel(sharedViewModel)
 }
 
 @BindingAdapter("setViewVisibility")

@@ -3,7 +3,7 @@ package hyunju.com.pr20211027.main.view.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import hyunju.com.pr20211027.home.vm.HomeViewModel
+import hyunju.com.pr20211027.home.vm.SharedViewModel
 import hyunju.com.pr20211027.main.view.data.MainUiItem
 import hyunju.com.pr20211027.main.view.data.MainUiItemType
 import hyunju.com.pr20211027.main.vm.MainViewModel
@@ -11,7 +11,7 @@ import hyunju.com.pr20211027.util.RecyclerAdapter
 
 class MainAdapter(
     private val mainViewModel: MainViewModel,
-    private val sharedViewModel: HomeViewModel
+    private val sharedViewModel: SharedViewModel
 ) : RecyclerView.Adapter<MainViewHolder>(), RecyclerAdapter<MainUiItem> {
 
     private var mainList: ArrayList<MainUiItem>? = null
