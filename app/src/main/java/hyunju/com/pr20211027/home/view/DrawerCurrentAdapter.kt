@@ -1,4 +1,4 @@
-package hyunju.com.pr20211027.current.view
+package hyunju.com.pr20211027.home.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,13 +6,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hyunju.com.pr20211027.R
-import hyunju.com.pr20211027.databinding.ItemCurrentBinding
+import hyunju.com.pr20211027.databinding.ItemDrawerCurrentBinding
 import hyunju.com.pr20211027.home.vm.SharedViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
 import hyunju.com.pr20211027.util.RecyclerAdapter
 
-class CurrentAdapter(private val sharedViewModel: SharedViewModel) :
-    RecyclerView.Adapter<CurrentAdapter.CurrentViewHolder>(), RecyclerAdapter<ProductItem> {
+class DrawerCurrentAdapter(private val sharedViewModel: SharedViewModel) :
+    RecyclerView.Adapter<DrawerCurrentAdapter.CurrentViewHolder>(), RecyclerAdapter<ProductItem> {
 
     private var productList: ArrayList<ProductItem>? = null
 
@@ -34,7 +34,7 @@ class CurrentAdapter(private val sharedViewModel: SharedViewModel) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrentViewHolder {
-        return DataBindingUtil.inflate<ItemCurrentBinding>(LayoutInflater.from(parent.context), R.layout.item_current, parent, false).let {
+        return DataBindingUtil.inflate<ItemDrawerCurrentBinding>(LayoutInflater.from(parent.context), R.layout.item_drawer_current, parent, false).let {
             it.sharedVm = sharedViewModel
             CurrentViewHolder(it)
         }
@@ -48,7 +48,7 @@ class CurrentAdapter(private val sharedViewModel: SharedViewModel) :
         return productList?.size ?: 0
     }
 
-    class CurrentViewHolder(private val binding: ItemCurrentBinding) : RecyclerView.ViewHolder(binding.root) {
+    class CurrentViewHolder(private val binding: ItemDrawerCurrentBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: ProductItem) {
             binding.data = data
         }

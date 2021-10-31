@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationView
 import hyunju.com.pr20211027.R
-import hyunju.com.pr20211027.current.view.CurrentAdapter
 import hyunju.com.pr20211027.databinding.LayoutCustomNavBinding
 import hyunju.com.pr20211027.home.vm.SharedViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
@@ -50,7 +49,7 @@ class CustomNavigation @kotlin.jvm.JvmOverloads constructor(
 
         binding.customNavRv.run{
             layoutManager = LinearLayoutManager(context)
-            adapter = CurrentAdapter(sharedViewModel)
+            adapter = DrawerCurrentAdapter(sharedViewModel)
         }
     }
 
