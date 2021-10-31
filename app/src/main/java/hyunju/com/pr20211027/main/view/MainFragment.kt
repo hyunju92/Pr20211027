@@ -45,11 +45,22 @@ class MainFragment : Fragment() {
         initAction()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_main_frag, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        mainViewModel.clickMainMenu(item.itemId)
+        return true
+    }
+
     private fun initView() {
         binding.mainRv.run {
             layoutManager = LinearLayoutManager(context)
             adapter = MainAdapter(mainViewModel, sharedViewModel)
         }
+        
         sharedViewModel.setDrawerLockState(false)
     }
 
@@ -63,30 +74,23 @@ class MainFragment : Fragment() {
         mainViewModel.getMainUiData(sharedViewModel.currentItemList)
     }
 
+
+    // ui Event
     private fun handleUiEvent(uiEvent: MainUiEvent) = when (uiEvent) {
         is MainUiEvent.MoveDetail -> moveToDetailFrag(uiEvent.data)
         MainUiEvent.OpenHomeDrawer -> openHomeDrawer()
     }
 
     private fun moveToDetailFrag(data: ProductItem) {
-        val action = MainFragmentDirections.actionMainFragmentToDetailFragment(data)
-        Navigation.findNavController(requireActivity(), (R.id.homeNavHostFrag)).navigate(action)
+        sharedViewModel.moveDetail(data)
     }
 
     private fun openHomeDrawer(){
         sharedViewModel.openDrawer()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_main_frag, menu)
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        mainViewModel.clickMainMenu(item.itemId)
-        return true
-    }
-
+    // override destroy
     override fun onDestroyView() {
         super.onDestroyView()
         eventDisposable?.dispose()

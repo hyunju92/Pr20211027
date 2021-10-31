@@ -23,12 +23,13 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
 
     val uiEvent = PublishSubject.create<MainUiEvent>()
 
+    // mainItemList
     fun getMainUiData(currentItemList: ObservableField<List<ProductItem>>){
         disposable.add(mainRepository.getMainData()
             .subscribeOn(Schedulers.computation())
             .map {
-                it.toMainUiItemList().toMutableList().apply {
-                    add(1, MainCurrentItem(currentItemList))    // 최근본상품 리스트 추가
+                it.toMainUiItemList().toMutableList().apply {           // api response 값 파싱
+                    add(1, MainCurrentItem(currentItemList))      // 최근본상품 리스트 추가
                 }
             }
             .observeOn(AndroidSchedulers.mainThread())
@@ -38,6 +39,7 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
         )
     }
 
+    // click event
     fun clickProductView(data: ProductItem){
         uiEvent.onNext(MainUiEvent.MoveDetail(data))
     }
@@ -48,6 +50,7 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
         }
     }
 
+    // onCleared
     override fun onCleared() {
         super.onCleared()
         disposable.clear()

@@ -40,8 +40,8 @@ class SharedViewModel @Inject constructor(): ViewModel(){
 
 
     //  drawer
-    fun clickDrawerCurrentItem(data: ProductItem){
-        uiEvent.onNext(HomeUiEvent.MoveDetail(data))
+    fun clickDrawerCurrentProduct(data: ProductItem){
+        moveDetail(data)
         uiEvent.onNext(HomeUiEvent.CloseDrawer)
     }
 
@@ -57,6 +57,10 @@ class SharedViewModel @Inject constructor(): ViewModel(){
         }
     }
 
+    // move detail
+    fun moveDetail(data: ProductItem){
+        uiEvent.onNext(HomeUiEvent.MoveDetail(data))
+    }
 
     // home backpressed
     fun homeBackPressedAction(isDrawerOpen: Boolean) {

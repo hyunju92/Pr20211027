@@ -20,6 +20,7 @@ import io.reactivex.rxjava3.disposables.Disposable
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
+
     private val sharedViewModel: SharedViewModel by viewModels()
     private var eventDisposable: Disposable? = null
 
@@ -84,12 +85,13 @@ class HomeActivity : AppCompatActivity() {
        super.onBackPressed()
     }
 
-    // override
+    // set backprssed
     override fun onBackPressed() {
         val isDrawerOpen = binding.homeDrawer.isDrawerOpen(Gravity.RIGHT)
         sharedViewModel.homeBackPressedAction(isDrawerOpen)
     }
 
+    // override destroy
     override fun onDestroy() {
         super.onDestroy()
         eventDisposable?.dispose()
