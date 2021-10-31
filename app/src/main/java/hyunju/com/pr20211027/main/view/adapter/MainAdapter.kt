@@ -3,7 +3,6 @@ package hyunju.com.pr20211027.main.view.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import hyunju.com.pr20211027.home.vm.SharedViewModel
 import hyunju.com.pr20211027.main.view.data.MainUiItem
 import hyunju.com.pr20211027.main.view.data.MainUiItemType
 import hyunju.com.pr20211027.main.vm.MainViewModel

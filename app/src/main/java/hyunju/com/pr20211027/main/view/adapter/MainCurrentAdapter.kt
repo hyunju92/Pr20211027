@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.ItemMainCurrentBinding
-import hyunju.com.pr20211027.home.vm.SharedViewModel
 import hyunju.com.pr20211027.main.network.ProductItem
 import hyunju.com.pr20211027.main.vm.MainViewModel
 import hyunju.com.pr20211027.util.RecyclerAdapter

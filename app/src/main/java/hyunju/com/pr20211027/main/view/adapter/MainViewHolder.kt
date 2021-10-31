@@ -8,7 +8,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import hyunju.com.pr20211027.R
 import hyunju.com.pr20211027.databinding.*
-import hyunju.com.pr20211027.home.vm.SharedViewModel
 import hyunju.com.pr20211027.main.view.data.*
 import hyunju.com.pr20211027.main.vm.MainViewModel
 
