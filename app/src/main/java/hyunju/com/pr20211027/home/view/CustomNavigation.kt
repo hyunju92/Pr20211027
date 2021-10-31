@@ -50,6 +50,8 @@ class CustomNavigation @kotlin.jvm.JvmOverloads constructor(
         binding.customNavRv.run{
             layoutManager = LinearLayoutManager(context)
             adapter = DrawerCurrentAdapter(homeViewModel)
+
+            (adapter as DrawerCurrentAdapter).replaceAll(this, homeViewModel.currentItemList.get())
         }
     }
 
