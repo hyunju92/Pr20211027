@@ -12,7 +12,7 @@ import hyunju.com.pr20211027.main.network.ProductItem
 import hyunju.com.pr20211027.main.vm.MainViewModel
 import hyunju.com.pr20211027.util.RecyclerAdapter
 
-class MainCurrentAdapter(private val mainViewModel: MainViewModel, private val sharedViewModel: SharedViewModel) : RecyclerView.Adapter<MainCurrentAdapter.MainCurrentViewHolder>(),
+class MainCurrentAdapter(private val mainViewModel: MainViewModel) : RecyclerView.Adapter<MainCurrentAdapter.MainCurrentViewHolder>(),
     RecyclerAdapter<ProductItem> {
 
     private var productList: ArrayList<ProductItem>? = null
@@ -37,7 +37,6 @@ class MainCurrentAdapter(private val mainViewModel: MainViewModel, private val s
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainCurrentViewHolder {
         return DataBindingUtil.inflate<ItemMainCurrentBinding>(LayoutInflater.from(parent.context), R.layout.item_main_current, parent, false).let {
             it.mainVm = mainViewModel
-            it.sharedVm = sharedViewModel
             MainCurrentViewHolder(it)
         }
     }

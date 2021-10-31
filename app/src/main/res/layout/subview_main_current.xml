@@ -8,14 +8,6 @@
         <import type="android.view.View" />
 
         <variable
-            name="mainViewModel"
-            type="hyunju.com.pr20211027.main.vm.MainViewModel" />
-
-        <variable
-            name="sharedViewModel"
-            type="hyunju.com.pr20211027.home.vm.SharedViewModel" />
-
-        <variable
             name="data"
             type="hyunju.com.pr20211027.main.view.data.MainCurrentItem" />
     </data>

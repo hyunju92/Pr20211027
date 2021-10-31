@@ -10,8 +10,7 @@ import hyunju.com.pr20211027.main.vm.MainViewModel
 import hyunju.com.pr20211027.util.RecyclerAdapter
 
 class MainAdapter(
-    private val mainViewModel: MainViewModel,
-    private val sharedViewModel: SharedViewModel
+    private val mainViewModel: MainViewModel
 ) : RecyclerView.Adapter<MainViewHolder>(), RecyclerAdapter<MainUiItem> {
 
     private var mainList: ArrayList<MainUiItem>? = null
@@ -38,7 +37,7 @@ class MainAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         return MainUiItemType.getTypeByCode(viewType).let { type ->
-            MainViewHolderFactory.getViewHolder(type, parent, mainViewModel, sharedViewModel, rvViewPool)
+            MainViewHolderFactory.getViewHolder(type, parent, mainViewModel, rvViewPool)
         }
     }
 

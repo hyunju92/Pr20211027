@@ -7,10 +7,6 @@
             name="mainVm"
             type="hyunju.com.pr20211027.main.vm.MainViewModel" />
 
-        <variable
-            name="sharedVm"
-            type="hyunju.com.pr20211027.home.vm.SharedViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -40,7 +40,7 @@ class ProdDoubleViewHolder(private val binding: SubviewMainProdDoubleBinding): M
     }
 }
 
-class CurrentViewHolder(private val binding: SubviewMainCurrentBinding, private val mainViewModel : MainViewModel, private val sharedViewModel: SharedViewModel, private val rvViewPool: RecyclerView.RecycledViewPool): MainViewHolder(binding.root) {
+class CurrentViewHolder(private val binding: SubviewMainCurrentBinding, private val mainViewModel : MainViewModel, private val rvViewPool: RecyclerView.RecycledViewPool): MainViewHolder(binding.root) {
 
     init {
         binding.subviewMainCurrentRv.run { setRecycledViewPool(rvViewPool) }
@@ -49,42 +49,36 @@ class CurrentViewHolder(private val binding: SubviewMainCurrentBinding, private 
     override fun bind(data: MainUiItem) {
         if(data is MainCurrentItem) {
             binding.data = data
-            binding.subviewMainCurrentRv.adapter = MainCurrentAdapter(mainViewModel, sharedViewModel)
+            binding.subviewMainCurrentRv.adapter = MainCurrentAdapter(mainViewModel)
         }
     }
 }
 
 object MainViewHolderFactory {
-    fun getViewHolder(type: MainUiItemType, parent: ViewGroup, mainViewModel: MainViewModel, sharedViewModel: SharedViewModel, rvViewPool: RecyclerView.RecycledViewPool) : MainViewHolder {
+    fun getViewHolder(type: MainUiItemType, parent: ViewGroup, mainViewModel: MainViewModel, rvViewPool: RecyclerView.RecycledViewPool) : MainViewHolder {
         val layoutId = getLayoutId(type)
 
         return when (type) {
             MainUiItemType.Image -> getViewDataBinding<SubviewMainImageBinding>(parent, layoutId)
                 .let {
-                    it.mainViewModel = mainViewModel
-                    it.sharedViewModel = sharedViewModel
                     ImageViewHolder(it)
                 }
 
             MainUiItemType.ProdSingle -> getViewDataBinding<SubviewMainProdSingleBinding>(parent, layoutId)
                 .let {
                     it.mainViewModel = mainViewModel
-                    it.sharedViewModel = sharedViewModel
                     ProdSingleViewHolder(it)
                 }
 
             MainUiItemType.ProdDouble-> getViewDataBinding<SubviewMainProdDoubleBinding>(parent, layoutId)
                 .let {
                     it.mainViewModel = mainViewModel
-                    it.sharedViewModel = sharedViewModel
                     ProdDoubleViewHolder(it)
                 }
 
             MainUiItemType.Current-> getViewDataBinding<SubviewMainCurrentBinding>(parent, layoutId)
                 .let {
-                    it.mainViewModel = mainViewModel
-                    it.sharedViewModel = sharedViewModel
-                    CurrentViewHolder(it, mainViewModel, sharedViewModel, rvViewPool)
+                    CurrentViewHolder(it, mainViewModel, rvViewPool)
                 }
 
         }

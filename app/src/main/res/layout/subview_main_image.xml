@@ -4,13 +4,6 @@
 
     <data>
 
-        <variable
-            name="mainViewModel"
-            type="hyunju.com.pr20211027.main.vm.MainViewModel" />
-
-        <variable
-            name="sharedViewModel"
-            type="hyunju.com.pr20211027.home.vm.SharedViewModel" />
 
         <variable
             name="data"

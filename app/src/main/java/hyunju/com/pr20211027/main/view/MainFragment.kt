@@ -31,7 +31,6 @@ class MainFragment : Fragment() {
         setHasOptionsMenu(true)
         binding = DataBindingUtil.inflate<FragmentMainBinding>(inflater, R.layout.fragment_main, container, false).apply {
             mainVm = mainViewModel
-            sharedVm = sharedViewModel
         }
         return binding.root
     }
@@ -57,7 +56,7 @@ class MainFragment : Fragment() {
     private fun initView() {
         binding.mainRv.run {
             layoutManager = LinearLayoutManager(context)
-            adapter = MainAdapter(mainViewModel, sharedViewModel)
+            adapter = MainAdapter(mainViewModel)
         }
 
         sharedViewModel.setDrawerLockState(false)
