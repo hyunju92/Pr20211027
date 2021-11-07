@@ -37,7 +37,7 @@ class DetailFragment : HomeBaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        observeLiveData()
+        observeData()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -61,7 +61,7 @@ class DetailFragment : HomeBaseFragment() {
         setHomeDrawerState(true)
     }
 
-    private fun observeLiveData() {
+    private fun observeData() {
         eventDisposable = detailViewModel.uiEvent.subscribe {
             handleUiEvent(it)
         }
